@@ -1,2 +1,2 @@
 # cms-pages
-Visable pages module for the Kohana-based Labyrinth website
+Visible pages module for the Kohana-based Labyrinth website
