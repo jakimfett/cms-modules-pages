@@ -22,15 +22,30 @@ class Controller_Pages extends Controller_Template {
     }
 
     public function action_index() {
-        
+
         $this->template->body = View::factory('static/index');
-        
-        
+
+
         $template = 'pages/' . $this->request->param('template', 'index');
-        
+
         $post = Post::dcache(Path::lookup($template)['id'], 'page', Config::load('pages'));
-        
+
         $this->template->body->promotext = $post->body;
+    }
+
+    public function action_rendertest() {
+
+        $section = $this->request->param('section', 'cmsblock');
+        $view = $this->request->param('view', 'rendertest');
+        
+        $this->template->body = View::factory($section . '/' . $view);
+
+
+        $template = 'pages/' . $this->request->param('alias', 'index');
+
+        $post = Post::dcache(Path::lookup($template)['id'], 'page', Config::load('pages'));
+
+        $this->template->body->text = $post->body;
     }
 
     public function after() {
