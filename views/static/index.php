@@ -2,7 +2,7 @@
 <body>
     <div id="page">
         <div id="header">
-
+            <img id='logo' src="media/labyrinth/images/logo.png"/>
         </div>
         <div id="navigation">
 
@@ -13,7 +13,7 @@
             <?php endif; ?>
         </div>
         <div id="footer">
-            
+
         </div>
     </div>
 </body>
