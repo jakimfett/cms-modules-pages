@@ -17,8 +17,13 @@ class Controller_Pages extends Controller_Template {
         }
 
         $this->template->header = View::factory('template/header');
+        $this->template->header->scripts = array(
+          'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'  
+        );
+        
         $this->template->header->title = $this->title;
         $this->template->footer = View::factory('template/footer');
+        
     }
 
     public function action_index() {
@@ -27,17 +32,19 @@ class Controller_Pages extends Controller_Template {
 
 
         $template = 'pages/' . $this->request->param('template', 'index');
+        $template_id = Path::lookup($template)['id'];
 
-        $post = Post::dcache(Path::lookup($template)['id'], 'page', Config::load('pages'));
-
-        $this->template->body->promotext = $post->body;
+        if ($template_id) {
+            $post = Post::dcache($template_id, 'page', Config::load('pages'));
+            $this->template->body->promotext = $post->body;
+        }
     }
 
     public function action_rendertest() {
 
         $section = $this->request->param('section', 'cmsblock');
         $view = $this->request->param('view', 'rendertest');
-        
+
         $this->template->body = View::factory($section . '/' . $view);
 
 
