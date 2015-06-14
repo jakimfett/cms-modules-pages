@@ -10,7 +10,9 @@ class Controller_Pages extends Controller_Template {
      */
     public function before() {
         parent::before();
-
+        
+        Theme::set_theme('labyrinth');
+                
         $this->title = $this->request->param('template');
         if (empty($this->title)) {
             $this->title = 'Labyrinth';
