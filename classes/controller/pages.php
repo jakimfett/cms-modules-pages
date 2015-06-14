@@ -10,9 +10,9 @@ class Controller_Pages extends Controller_Template {
      */
     public function before() {
         parent::before();
-        
+
         Theme::set_theme('labyrinth');
-                
+
         $this->title = $this->request->param('template');
         if (empty($this->title)) {
             $this->title = 'Labyrinth';
@@ -20,12 +20,12 @@ class Controller_Pages extends Controller_Template {
 
         $this->template->header = View::factory('template/header');
         $this->template->header->scripts = array(
-          'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js'  
+            'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
+            'media/labyrinth/js/script.js'
         );
-        
+
         $this->template->header->title = $this->title;
         $this->template->footer = View::factory('template/footer');
-        
     }
 
     public function action_index() {
