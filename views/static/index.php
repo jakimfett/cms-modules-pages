@@ -38,8 +38,8 @@
                 <div id="content" class="center">
                     <div id="tagline">
                         <h1>
-                            <?php if (isset($fivewords)) : ?>
-                                <?= trim($fivewords); ?>
+                            <?php if (isset($mediatitle)) : ?>
+                                <?= trim($mediatitle); ?>
                             <?php endif; ?>
                         </h1>
                     </div>
@@ -49,7 +49,16 @@
                         <?php endif; ?>
                     </div>
 
+                    <div id="tagline">
+                        <h1>
+                            <?php if (isset($fivewords)) : ?>
+                                <?= trim($fivewords); ?>
+                            <?php endif; ?>
+                        </h1>
+                    </div>
+                    
                     <div id="rooms">
+
                         <div>
                             <img src="media/labyrinth/images/room.jpg"/>
                             <p class="text">
