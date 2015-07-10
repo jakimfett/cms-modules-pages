@@ -29,7 +29,7 @@ class Controller_Pages extends Controller_Template {
     }
 
     public function action_index() {
-        
+
         $page = $this->request->param('template', 'index');
 
         $this->template->body = View::factory('static/' . $page);
@@ -40,9 +40,7 @@ class Controller_Pages extends Controller_Template {
                 $five_words_content = Post::dcache($five_words_id, 'page', Config::load('pages'));
                 $this->template->body->fivewords = $five_words_content->body;
 
-                $elevator_pitch_id = Path::lookup('pages/index-elevator-pitch')['id'];
-                $elevator_pitch_content = Post::dcache($elevator_pitch_id, 'page', Config::load('pages'));
-                $this->template->body->pitch = $elevator_pitch_content->body;
+                $this->template->body->video = View::factory('static/video-embed');
 
                 $left_room_id = Path::lookup('pages/index-left-room')['id'];
                 $left_room_content = Post::dcache($left_room_id, 'page', Config::load('pages'));

@@ -43,9 +43,9 @@
                             <?php endif; ?>
                         </h1>
                     </div>
-                    <div id="pitch">
-                        <?php if (isset($pitch)) : ?>
-                            <?= trim($pitch); ?>
+                    <div id="video-pitch">
+                        <?php if (isset($video)) : ?>
+                            <?= trim($video); ?>
                         <?php endif; ?>
                     </div>
 
