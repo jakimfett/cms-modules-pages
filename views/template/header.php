@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         
         <link rel="stylesheet" id="labyrinth-theme" href="./media/labyrinth/css/style.css" type="text/css" media="all">
+        <link rel="stylesheet" href="./media/labyrinth/css/font-awesome.min.css">
 
         <?php foreach ($scripts as $script) : ?>
             <script type="text/javascript" src="<?= $script; ?>"></script>
