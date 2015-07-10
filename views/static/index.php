@@ -19,10 +19,10 @@
                     </div>
                     <div class="right s-media-buttons">                        
                         <a href="https://www.facebook.com/solvethelabyrinth" target="_blank">
-                            <i class="fontawesome square-facebook-link-icon"></i>
+                            <i class="fa square-facebook-link-icon"></i>
                         </a>
                         <a href="https://twitter.com/labyrinthpdx" target="_blank">
-                            <i class="fontawesome square-twitter-link-icon"></i>
+                            <i class="fa square-twitter-link-icon"></i>
                         </a>
                         <br/>
                     </div>
@@ -74,6 +74,26 @@
                         <div>
                             <img src="media/labyrinth/images/room.jpg"/>
                             <?= trim($rroom); ?>
+                        </div>
+                    </div>
+                    <div id="blurbs">
+                        <div id="blurb-right">
+                            <div class="circle">
+                                <i class="fa fa-book"></i>
+                            </div>
+                            <p>Story</p>
+                        </div>
+                        <div id="blurb-left">
+                            <div class="circle">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <p>Team</p>
+                        </div>
+                        <div id="blurb-center">
+                            <div class="circle">
+                                <i class="fa fa-puzzle-piece"></i>
+                            </div>
+                            <p>Puzzles</p>
                         </div>
                     </div>
                 </div>
