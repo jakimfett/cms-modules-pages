@@ -14,15 +14,23 @@
 
                 <div>
                     <div class="left">
-                        <a href="index">Home</a>
-                        <a href="index/faq">FAQ</a>
+                        <a href="index" class="nav-button">Home</a>
+                        <a href="index/faq" class="nav-button">FAQ</a>
+                    </div>
+                    <div class="right s-media-buttons">                        
+                        <a href="https://www.facebook.com/solvethelabyrinth" target="_blank">
+                            <i class="fontawesome square-facebook-link-icon"></i>
+                        </a>
+                        <a href="https://twitter.com/labyrinthpdx" target="_blank">
+                            <i class="fontawesome square-twitter-link-icon"></i>
+                        </a>
+                        <br/>
                     </div>
                     <div class="right">
-                        <a href="index/contact">Contact</a>
-                        <a >(T)(F)</a>
+                        <a href="index/contact" class="nav-button">Contact</a>
                     </div>
                     <div class="center">
-                        <a href="index/tickets">Reserve Your Tickets Now</a>
+                        <a href="index/tickets" class="nav-button">Reserve Your Tickets Now</a>
                     </div>
                 </div>
             </div>
@@ -30,7 +38,7 @@
             <div id="purchase-float" class="floating-nav hidden">
                 <div>
                     <div class="center">
-                        <a href="index/tickets">Reserve Your Tickets Now</a>
+                        <a href="index/tickets" class="nav-button">Reserve Your Tickets Now</a>
                     </div>
                 </div>
             </div>
