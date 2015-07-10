@@ -36,6 +36,11 @@ class Controller_Pages extends Controller_Template {
 
         switch ($page) {
             case 'index':
+                
+                $media_title_id = Path::lookup('pages/media-title-top')['id'];
+                $media_title_content = Post::dcache($media_title_id, 'page', Config::load('pages'));
+                $this->template->body->mediatitle = $media_title_content->body;
+                
                 $five_words_id = Path::lookup('pages/index-five-words')['id'];
                 $five_words_content = Post::dcache($five_words_id, 'page', Config::load('pages'));
                 $this->template->body->fivewords = $five_words_content->body;
