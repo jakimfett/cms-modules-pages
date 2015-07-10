@@ -61,15 +61,11 @@
 
                         <div>
                             <img src="media/labyrinth/images/room.jpg"/>
-                            <p class="text">
-                                <?= trim($lroom); ?>
-                            </p>
+                            <?= trim($lroom); ?>
                         </div>
                         <div>
                             <img src="media/labyrinth/images/room.jpg"/>
-                            <p class="text">
-                                <?= trim($rroom); ?>
-                            </p>
+                            <?= trim($rroom); ?>
                         </div>
                     </div>
                 </div>
