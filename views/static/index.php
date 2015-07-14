@@ -77,19 +77,19 @@
                         </div>
                     </div>
                     <div id="blurbs">
-                        <div id="blurb-right">
+                        <div id="blurb-left">
                             <div class="circle">
                                 <i class="fa fa-cogs"></i>
                             </div>
                             <p>Story</p>
                         </div>
-                        <div id="blurb-left">
+                        <div id="blurb-center">
                             <div class="circle">
                                 <i class="fa fa-leanpub"></i>
                             </div>
                             <p>Team</p>
                         </div>
-                        <div id="blurb-center">
+                        <div id="blurb-right">
                             <div class="circle">
                                 <i class="fa fa-key"></i>
                             </div>
