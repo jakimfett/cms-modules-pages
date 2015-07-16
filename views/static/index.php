@@ -81,7 +81,7 @@
                             <div class="circle">
                                 <i class="fa fa-cogs"></i>
                             </div>
-                            <?= trim($blurbright); ?>
+                            <?= trim($blurbleft); ?>
                         </div>
                         <div id="blurb-center">
                             <div class="circle">
@@ -93,7 +93,7 @@
                             <div class="circle">
                                 <i class="fa fa-key"></i>
                             </div>
-                            <?= trim($blurbleft); ?>
+                            <?= trim($blurbright); ?>
                         </div>
                     </div>
                 </div>
