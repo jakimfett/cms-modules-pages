@@ -55,6 +55,18 @@ class Controller_Pages extends Controller_Template {
                 $right_room_content = Post::dcache($right_room_id, 'page', Config::load('pages'));
                 $this->template->body->rroom = $right_room_content->body;
 
+                $right_blurb_id = Path::lookup('pages/blurb-right')['id'];
+                $right_blurb_content = Post::dcache($right_blurb_id, 'page', Config::load('pages'));
+                $this->template->body->blurbright = $right_blurb_content->body;
+
+                $center_blurb_id = Path::lookup('pages/blurb-center')['id'];
+                $center_blurb_content = Post::dcache($center_blurb_id, 'page', Config::load('pages'));
+                $this->template->body->blurbcenter = $center_blurb_content->body;
+
+                $left_blurb_id = Path::lookup('pages/blurb-left')['id'];
+                $left_blurb_content = Post::dcache($left_blurb_id, 'page', Config::load('pages'));
+                $this->template->body->blurbleft = $left_blurb_content->body;
+
                 break;
 
             default:
