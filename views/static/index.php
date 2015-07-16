@@ -14,8 +14,8 @@
 
                 <div>
                     <div class="left">
-                        <a href="index" class="nav-button">Home</a>
-                        <a href="index/faq" class="nav-button">FAQ</a>
+                        <a href="/" class="nav-button">Home</a>
+                        <a href="/faq" class="nav-button">FAQ</a>
                     </div>
                     <div class="right s-media-buttons">                        
                         <a href="https://www.facebook.com/solvethelabyrinth" target="_blank">
