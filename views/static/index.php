@@ -81,19 +81,19 @@
                             <div class="circle">
                                 <i class="fa fa-cogs"></i>
                             </div>
-                            <p>Story</p>
+                            <?= trim($blurbright); ?>
                         </div>
                         <div id="blurb-center">
                             <div class="circle">
                                 <i class="fa fa-leanpub"></i>
                             </div>
-                            <p>Team</p>
+                            <?= trim($blurbcenter); ?>
                         </div>
                         <div id="blurb-right">
                             <div class="circle">
                                 <i class="fa fa-key"></i>
                             </div>
-                            <p>Puzzles</p>
+                            <?= trim($blurbleft); ?>
                         </div>
                     </div>
                 </div>
