@@ -21,7 +21,8 @@ class Controller_Pages extends Controller_Template {
         $this->template->header = View::factory('template/header');
         $this->template->header->scripts = array(
             'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
-            'media/labyrinth/js/script.js'
+            'media/labyrinth/js/script.js',
+            'media/labyrinth/js/jquery.fitvids.js'
         );
 
         $this->template->header->title = $this->title;
