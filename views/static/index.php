@@ -27,10 +27,10 @@
                         <br/>
                     </div>
                     <div class="right">
-                        <a href="index/contact" class="nav-button">Contact</a>
+                        <a href="/contact" class="nav-button">Contact</a>
                     </div>
                     <div class="center">
-                        <a href="index/tickets" class="nav-button">Reserve Your Tickets Now</a>
+                        <a href="/tickets" class="nav-button">Reserve Your Tickets Now</a>
                     </div>
                 </div>
             </div>
