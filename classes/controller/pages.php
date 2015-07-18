@@ -27,46 +27,49 @@ class Controller_Pages extends Controller_Template {
 
         $this->template->header->title = $this->title;
         $this->template->footer = View::factory('template/footer');
+        
+        $page = $this->request->param('template', 'page');
+        $this->template->body = View::factory('static/' . $page);
     }
 
     public function action_index() {
 
         $page = $this->request->param('template', 'index');
 
-        $this->template->body = View::factory('static/' . $page);
+        $this->template->body->content = View::factory('static/' . $page);
 
         switch ($page) {
             case 'index':
                 
                 $media_title_id = Path::lookup('pages/media-title-top')['id'];
                 $media_title_content = Post::dcache($media_title_id, 'page', Config::load('pages'));
-                $this->template->body->mediatitle = $media_title_content->body;
+                $this->template->body->content->mediatitle = $media_title_content->body;
                 
                 $five_words_id = Path::lookup('pages/index-five-words')['id'];
                 $five_words_content = Post::dcache($five_words_id, 'page', Config::load('pages'));
-                $this->template->body->fivewords = $five_words_content->body;
+                $this->template->body->content->fivewords = $five_words_content->body;
 
-                $this->template->body->video = View::factory('static/video-embed');
+                $this->template->body->content->video = View::factory('static/video-embed');
 
                 $left_room_id = Path::lookup('pages/index-left-room')['id'];
                 $left_room_content = Post::dcache($left_room_id, 'page', Config::load('pages'));
-                $this->template->body->lroom = $left_room_content->body;
+                $this->template->body->content->lroom = $left_room_content->body;
 
                 $right_room_id = Path::lookup('pages/index-right-room')['id'];
                 $right_room_content = Post::dcache($right_room_id, 'page', Config::load('pages'));
-                $this->template->body->rroom = $right_room_content->body;
+                $this->template->body->content->rroom = $right_room_content->body;
 
                 $right_blurb_id = Path::lookup('pages/blurb-right')['id'];
                 $right_blurb_content = Post::dcache($right_blurb_id, 'page', Config::load('pages'));
-                $this->template->body->blurbright = $right_blurb_content->body;
+                $this->template->body->content->blurbright = $right_blurb_content->body;
 
                 $center_blurb_id = Path::lookup('pages/blurb-center')['id'];
                 $center_blurb_content = Post::dcache($center_blurb_id, 'page', Config::load('pages'));
-                $this->template->body->blurbcenter = $center_blurb_content->body;
+                $this->template->body->content->blurbcenter = $center_blurb_content->body;
 
                 $left_blurb_id = Path::lookup('pages/blurb-left')['id'];
                 $left_blurb_content = Post::dcache($left_blurb_id, 'page', Config::load('pages'));
-                $this->template->body->blurbleft = $left_blurb_content->body;
+                $this->template->body->content->blurbleft = $left_blurb_content->body;
 
                 break;
 
