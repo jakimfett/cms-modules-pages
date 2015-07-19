@@ -70,6 +70,10 @@ class Controller_Pages extends Controller_Template {
     public function action_faq() {
         
     }
+    
+    public function action_contact() {
+        
+    }
 
     public function action_rendertest() {
 
