@@ -29,7 +29,7 @@ class Controller_Pages extends Controller_Template {
         $this->template->footer = View::factory('template/footer');
 
         $page = $this->request->param('template', 'page');
-        $this->template->body = View::factory('static/' . $page);
+        $this->template->body = View::factory('template/' . $page);
     }
 
     public function action_index() {
