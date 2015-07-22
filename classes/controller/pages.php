@@ -68,7 +68,27 @@ class Controller_Pages extends Controller_Template {
     }
     
     public function action_faq() {
+        $this->template->body->content = View::factory('page/faq');
         
+        $maintext_id = Path::lookup('pages/faq-maintext')['id'];
+        $maintext_content = Post::dcache($maintext_id, 'page', Config::load('pages'));
+        $this->template->body->content->maintext = $maintext_content->body;
+        
+        $this->template->body->content->faqs = array();
+        
+        for ($i = 0; $i < 8; $i++){
+            $faq = View::factory('block/picture-text');
+            if($i %2 ===0){
+                $side = 'left';
+            } else {
+                $side = 'right';
+            }
+            $faq->title = 'test title';
+            $faq->icon = 'fa-question-circle';
+            $faq->text = 'This is test content. There\'s other content like this, but this content is mine.';
+            $faq->side = $side;
+            $this->template->body->content->faqs[] = $faq;
+        }
     }
     
     public function action_contact() {
