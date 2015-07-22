@@ -34,7 +34,7 @@ class Controller_Pages extends Controller_Template {
 
     public function action_index() {
 
-        $this->template->body->content = View::factory('static/index');
+        $this->template->body->content = View::factory('block/index');
 
         $media_title_id = Path::lookup('pages/media-title-top')['id'];
         $media_title_content = Post::dcache($media_title_id, 'page', Config::load('pages'));
@@ -44,7 +44,7 @@ class Controller_Pages extends Controller_Template {
         $five_words_content = Post::dcache($five_words_id, 'page', Config::load('pages'));
         $this->template->body->content->fivewords = $five_words_content->body;
 
-        $this->template->body->content->video = View::factory('static/video-embed');
+        $this->template->body->content->video = View::factory('block/video-embed');
 
         $left_room_id = Path::lookup('pages/index-left-room')['id'];
         $left_room_content = Post::dcache($left_room_id, 'page', Config::load('pages'));
