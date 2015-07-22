@@ -34,7 +34,7 @@ class Controller_Pages extends Controller_Template {
 
     public function action_index() {
 
-        $this->template->body->content = View::factory('block/index');
+        $this->template->body->content = View::factory('page/index');
 
         $media_title_id = Path::lookup('pages/media-title-top')['id'];
         $media_title_content = Post::dcache($media_title_id, 'page', Config::load('pages'));
