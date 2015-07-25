@@ -19,4 +19,10 @@ if (!Route::cache()) {
                 'controller' => 'pages',
                 'action' => 'index'
     ));
+
+    Route::set('page-render-test', 'rendertest(/<alias>)(/<section>(/<view>))')
+            ->defaults(array(
+                'controller' => 'pages',
+                'action' => 'rendertest'
+    ));
 }
