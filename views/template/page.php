@@ -11,27 +11,24 @@
             <div id='header-spacer'></div>
 
             <div id="navigation">
-
-                <div>
-                    <div class="left">
-                        <a href="/" class="nav-button">Home</a>
-                        <a href="/faq" class="nav-button">FAQ</a>
-                    </div>
-                    <div class="right s-media-buttons">                        
-                        <a href="https://www.facebook.com/solvethelabyrinth" target="_blank">
-                            <i class="fa square-facebook-link-icon"></i>
-                        </a>
-                        <a href="https://twitter.com/labyrinthpdx" target="_blank">
-                            <i class="fa square-twitter-link-icon"></i>
-                        </a>
-                        <br/>
-                    </div>
-                    <div class="right">
-                        <a href="/contact" class="nav-button">Contact</a>
-                    </div>
-                    <div class="center">
-                        <a href="/tickets" class="nav-button">Reserve Your Tickets Now</a>
-                    </div>
+                <div class="left">
+                    <a href="/" class="nav-button">Home</a>
+                    <a href="/faq" class="nav-button">FAQ</a>
+                </div>
+                <div class="right s-media-buttons">                        
+                    <a href="https://www.facebook.com/solvethelabyrinth" target="_blank">
+                        <i class="fa square-facebook-link-icon"></i>
+                    </a>
+                    <a href="https://twitter.com/labyrinthpdx" target="_blank">
+                        <i class="fa square-twitter-link-icon"></i>
+                    </a>
+                    <br/>
+                </div>
+                <div class="right">
+                    <a href="/contact" class="nav-button">Contact</a>
+                </div>
+                <div class="center">
+                    <a href="/tickets" class="nav-button">Reserve Your Tickets Now</a>
                 </div>
             </div>
 
