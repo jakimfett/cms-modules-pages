@@ -78,7 +78,7 @@ class Controller_Pages extends Controller_Template {
 
         $count = 0;
         $faq_tag_id = 3;
-        $faqs = ORM::factory('tag', $faq_tag_id)->posts->order_by('created', 'ASC')->find_all();
+        $faqs = ORM::factory('tag', $faq_tag_id)->posts->order_by('id', 'ASC')->find_all();
         foreach ($faqs as $faq_data) {
             $faq = View::factory('block/picture-text');
             if ($count % 2 === 0) {
@@ -88,11 +88,23 @@ class Controller_Pages extends Controller_Template {
             }
             $faq->title = $faq_data->title;
             $faq->icon = 'fa-question-circle';
-            $faq->text = $faq_data->body;
+            $faq->text = $this->_sanitize_text($faq_data->body);
             $faq->side = $side;
             $this->template->body->content->faqs[] = $faq;
             $count++;
         }
+    }
+
+    private function _sanitize_text($text) {
+        $needles = array(
+            'Â',
+            ' Â ',
+            '  ',
+            ' &nbsp;',
+            '&nbsp; '
+        );
+
+        return str_replace($needles, '', $text);
     }
 
     public function action_contact() {
