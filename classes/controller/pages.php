@@ -30,6 +30,19 @@ class Controller_Pages extends Controller_Template {
 
         $page = $this->request->param('template', 'page');
         $this->template->body = View::factory('template/' . $page);
+        
+        $footer_blurb_id = Path::lookup('pages/footer-blurb')['id'];
+        $footer_blurb_content = Post::dcache($footer_blurb_id, 'page', Config::load('pages'));
+        $this->template->body->footerblurb = $this->_sanitize_text($footer_blurb_content->body);
+        $this->template->body->footnav = View::factory('template/footnav');
+        $this->template->body->footnav->links = array(
+            'home' => '/',
+            'FAQ' => '/faq',
+            'contact' => '/contact',
+            'facebook' => 'https://www.facebook.com/solvethelabyrinth',
+            'twitter' => 'https://twitter.com/labyrinthpdx'
+        );
+        
     }
 
     public function action_index() {
@@ -101,7 +114,9 @@ class Controller_Pages extends Controller_Template {
             ' Â ',
             '  ',
             ' &nbsp;',
-            '&nbsp; '
+            '&nbsp; ',
+            'Ã',
+            'Â'
         );
 
         return str_replace($needles, '', $text);

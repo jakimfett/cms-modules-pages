@@ -1,4 +1,3 @@
-
 <body>
     <div id="page">
         <div id="content-container">
@@ -48,6 +47,14 @@
         </div>
     </div>
     <div id="footer">
-        <div>Footer stuff</div>
+        <div id="footer-container">
+            <div id="footer-left">
+                <?= $footerblurb; ?>
+            </div>
+            <div id="footer-right">
+                <?= $footnav; ?>
+            </div>
+        </div>
+        <div class="clear"></div>
     </div>
 </body>
