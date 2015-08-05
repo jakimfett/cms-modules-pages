@@ -123,7 +123,33 @@ class Controller_Pages extends Controller_Template {
     }
 
     public function action_contact() {
+        $this->template->body->content = View::factory('page/contact');
+
+        $maintext_id = Path::lookup('pages/contact-maintext')['id'];
+        $maintext_content = Post::dcache($maintext_id, 'page', Config::load('pages'));
+        $this->template->body->content->maintext = $maintext_content->body;
+
+        $this->template->body->content->profiles = array();
+
+        $count = 0;
+        $contact_tag_id = 4;
+        $profiles = ORM::factory('tag', $contact_tag_id)->posts->order_by('title', 'ASC')->find_all();
         
+        foreach ($profiles as $profile) {
+            $profile_block = View::factory('block/profile');
+            if ($count % 2 === 0) {
+                $side = 'left';
+            } else {
+                $side = 'right';
+            }
+            $profile_block->title = $profile->title;
+            $profile_block->image = $profile->image;
+            $profile_block->icon = 'fa-question-circle';
+            $profile_block->text = $this->_sanitize_text($profile->body);
+            $profile_block->side = $side;
+            $this->template->body->content->profiles[] = $profile_block;
+            $count++;
+        }
     }
 
     public function action_rendertest() {
