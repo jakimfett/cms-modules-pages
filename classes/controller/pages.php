@@ -1,6 +1,7 @@
 <?php
 
-class Controller_Pages extends Controller_Template {
+class Controller_Pages extends Controller_Template
+{
 
     public $template = 'template/blank';
     public $title;
@@ -30,7 +31,7 @@ class Controller_Pages extends Controller_Template {
 
         $page = $this->request->param('template', 'page');
         $this->template->body = View::factory('template/' . $page);
-        
+
         $footer_blurb_id = Path::lookup('pages/footer-blurb')['id'];
         $footer_blurb_content = Post::dcache($footer_blurb_id, 'page', Config::load('pages'));
         $this->template->body->footerblurb = $this->_sanitize_text($footer_blurb_content->body);
@@ -42,7 +43,6 @@ class Controller_Pages extends Controller_Template {
             'facebook' => 'https://www.facebook.com/solvethelabyrinth',
             'twitter' => 'https://twitter.com/labyrinthpdx'
         );
-        
     }
 
     public function action_index() {
@@ -61,10 +61,12 @@ class Controller_Pages extends Controller_Template {
 
         $left_room_id = Path::lookup('pages/index-left-room')['id'];
         $left_room_content = Post::dcache($left_room_id, 'page', Config::load('pages'));
+        $this->template->body->content->lroom_img = $left_room_content->image;
         $this->template->body->content->lroom = $left_room_content->body;
 
         $right_room_id = Path::lookup('pages/index-right-room')['id'];
         $right_room_content = Post::dcache($right_room_id, 'page', Config::load('pages'));
+        $this->template->body->content->rroom_img = $right_room_content->image;
         $this->template->body->content->rroom = $right_room_content->body;
 
         $right_blurb_id = Path::lookup('pages/blurb-right')['id'];
@@ -134,7 +136,7 @@ class Controller_Pages extends Controller_Template {
         $count = 0;
         $contact_tag_id = 4;
         $profiles = ORM::factory('tag', $contact_tag_id)->posts->order_by('title', 'ASC')->find_all();
-        
+
         foreach ($profiles as $profile) {
             $profile_block = View::factory('block/profile');
             if ($count % 2 === 0) {

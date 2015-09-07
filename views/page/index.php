@@ -22,11 +22,11 @@
 <div id="rooms">
 
     <div>
-        <img src="media/labyrinth/images/inheritance.png"/>
+        <img src="<?= trim($lroom_img); ?>"/>
         <?= trim($lroom); ?>
     </div>
     <div>
-        <img src="media/labyrinth/images/horror.png"/>
+        <img src="<?= trim($rroom_img); ?>"/>
         <?= trim($rroom); ?>
     </div>
 </div>
