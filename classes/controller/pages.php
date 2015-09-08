@@ -177,6 +177,18 @@ class Controller_Pages extends Controller_Template
         $this->template->body->text = $post->body;
     }
 
+    public function action_tickets() {
+        $this->template->body->content = View::factory('page/tickets');
+
+        $beta_test_notice_id = Path::lookup('pages/beta-test-notice')['id'];
+        $beta_test_notice_content = Post::dcache($beta_test_notice_id, 'page', Config::load('pages'));
+        $this->template->body->content->beta_test_image = $beta_test_notice_content->image;
+        $this->template->body->content->beta_test_notice = $this->_sanitize_text($beta_test_notice_content->body);
+
+
+        $this->template->body->tickets_page = true;
+    }
+
     public function after() {
         if ($this->auto_render === TRUE) {
             if (empty($this->template->body->content)) {

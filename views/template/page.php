@@ -26,18 +26,22 @@
                 <div class="right">
                     <a href="/contact" class="nav-button">Contact</a>
                 </div>
-                <div id="nav-tickets" class="center">
-                    <a href="/tickets" class="nav-button">Reserve Your Tickets Now</a>
-                </div>
-            </div>
 
-            <div id="purchase-float" class="floating-nav hidden">
-                <div>
-                    <div class="center">
-                        <a href="index/tickets" class="nav-button">Reserve Your Tickets Now</a>
+                <?php if (!isset($tickets_page)): ?>
+                    <div id="nav-tickets" class="center">
+                        <a href="/tickets" class="nav-button">Reserve Your Tickets Now</a>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <?php if (!isset($tickets_page)): ?>
+                <div id="purchase-float" class="floating-nav hidden">
+                    <div>
+                        <div class="center">
+                            <a href="/tickets" class="nav-button">Reserve Your Tickets Now</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
             <div id="content-wrapper">
                 <div id="content" class="center">
                     <?= $content; ?>
