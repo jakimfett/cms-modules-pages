@@ -19,6 +19,12 @@ if (!Route::cache()) {
                 'action' => 'tickets'
     ));
 
+    Route::set('page-four-oh-four', '404')
+            ->defaults(array(
+                'controller' => 'pages',
+                'action' => 'four_oh_four'
+    ));
+
     Route::set('page-home', '')
             ->defaults(array(
                 'controller' => 'pages',
