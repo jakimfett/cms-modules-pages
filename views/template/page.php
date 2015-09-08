@@ -26,7 +26,7 @@
                 <div class="right">
                     <a href="/contact" class="nav-button">Contact</a>
                 </div>
-                <div class="center">
+                <div id="nav-tickets" class="center">
                     <a href="/tickets" class="nav-button">Reserve Your Tickets Now</a>
                 </div>
             </div>
