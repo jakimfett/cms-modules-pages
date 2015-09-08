@@ -1,8 +1,5 @@
-<div class="center-icon">
-    <i class="fa fa-question-circle"></i>
-</div>
 <div id="contact-maintext">
-    <?= $maintext; ?>
+    <h1><?= $maintext; ?></h1>
 </div>
 <div id="faq">
     <?php foreach ($profiles as $profile) : ?>
