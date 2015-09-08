@@ -80,6 +80,10 @@ class Controller_Pages extends Controller_Template
         $left_blurb_id = Path::lookup('pages/blurb-left')['id'];
         $left_blurb_content = Post::dcache($left_blurb_id, 'page', Config::load('pages'));
         $this->template->body->content->blurbleft = $left_blurb_content->body;
+
+        $closing_id = Path::lookup('pages/blurb-closing')['id'];
+        $closing_content = Post::dcache($closing_id, 'page', Config::load('pages'));
+        $this->template->body->content->closing = $closing_content->body;
     }
 
     public function action_faq() {
