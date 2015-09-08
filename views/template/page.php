@@ -14,7 +14,7 @@
                     <a href="/" class="nav-button">Home</a>
                     <a href="/faq" class="nav-button">FAQ</a>
                 </div>
-                <div class="right s-media-buttons">                        
+                <div class="right s-media-buttons">
                     <a href="https://www.facebook.com/solvethelabyrinth" target="_blank">
                         <i class="fa square-facebook-link-icon"></i>
                     </a>
@@ -48,10 +48,10 @@
     </div>
     <div id="footer">
         <div id="footer-container">
-            <div id="footer-left">
+            <div id="footer-blurb">
                 <?= $footerblurb; ?>
             </div>
-            <div id="footer-right">
+            <div id="footer-nav">
                 <?= $footnav; ?>
             </div>
         </div>
