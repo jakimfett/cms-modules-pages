@@ -1,5 +1,4 @@
 <?php
-
 if (!Route::cache()) {
 
     Route::set('page-faq', 'faq')
@@ -12,6 +11,12 @@ if (!Route::cache()) {
             ->defaults(array(
                 'controller' => 'pages',
                 'action' => 'contact'
+    ));
+
+    Route::set('page-tickets', 'tickets')
+            ->defaults(array(
+                'controller' => 'pages',
+                'action' => 'tickets'
     ));
 
     Route::set('page-home', '')
