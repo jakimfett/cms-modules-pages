@@ -152,6 +152,10 @@ class Controller_Pages extends Controller_Template
             $this->template->body->content->profiles[] = $profile_block;
             $count++;
         }
+
+        $address_id = Path::lookup('pages/contact-address')['id'];
+        $address_content = Post::dcache($address_id, 'page', Config::load('pages'));
+        $this->template->body->content->address = $address_content->body;
     }
 
     public function action_rendertest() {
