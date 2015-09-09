@@ -4,7 +4,7 @@
 
             <div id="header-container">
                 <div id="header">
-                    <img id='logo' src="media/labyrinth/images/logo.png"/>
+                    <img id='logo' src="/media/labyrinth/images/logo.png"/>
                 </div>
             </div>
             <div id='header-spacer'></div>
