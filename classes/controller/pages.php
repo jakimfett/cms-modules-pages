@@ -23,8 +23,8 @@ class Controller_Pages extends Controller_Template
         $this->template->header          = View::factory('template/header');
         $this->template->header->scripts = array(
             'https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js',
-            'media/labyrinth/js/script.js',
-            'media/labyrinth/js/jquery.fitvids.js'
+            '/media/labyrinth/js/script.js',
+            '/media/labyrinth/js/jquery.fitvids.js'
         );
 
         $this->template->header->title = $this->title;
@@ -181,6 +181,23 @@ class Controller_Pages extends Controller_Template
         $post = Post::dcache(Path::lookup($template)['id'], 'page', Config::load('pages'));
 
         $this->template->body->text = $post->body;
+    }
+
+    public function action_unsubscribe()
+    {
+
+        $this->template->body->content = View::factory('page/unsubscribe');
+
+        $email_name                                   = filter_var($this->request->param('email'), FILTER_SANITIZE_EMAIL);
+        $email_encoded_domain                         = filter_var($this->request->param('domain'), FILTER_SANITIZE_EMAIL);
+        $email_domain                                 = str_replace('DOT', '.', $email_encoded_domain);
+        $this->template->body->content->email_address = filter_var($email_name . "@" . $email_domain, FILTER_SANITIZE_EMAIL);
+
+
+        $unsubscribe_id                                    = Path::lookup('pages/unsubscribe-message')['id'];
+        $unsubscribe_content                               = Post::dcache($unsubscribe_id, 'page', Config::load('pages'));
+        $this->template->body->content->unsubscribe_image  = $unsubscribe_content->image;
+        $this->template->body->content->unsubscribe_notice = $this->_sanitize_text($unsubscribe_content->body);
     }
 
     public function action_tickets()
