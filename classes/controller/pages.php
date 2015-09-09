@@ -185,7 +185,6 @@ class Controller_Pages extends Controller_Template
 
     public function action_unsubscribe()
     {
-
         $this->template->body->content = View::factory('page/unsubscribe');
 
         $email_name                                   = filter_var($this->request->param('email'), FILTER_SANITIZE_EMAIL);
@@ -198,6 +197,27 @@ class Controller_Pages extends Controller_Template
         $unsubscribe_content                               = Post::dcache($unsubscribe_id, 'page', Config::load('pages'));
         $this->template->body->content->unsubscribe_image  = $unsubscribe_content->image;
         $this->template->body->content->unsubscribe_notice = $this->_sanitize_text($unsubscribe_content->body);
+
+        $email_address = $this->request->post('email');
+        if (isset($email_address)) {
+            $db_newsletter   = Model::factory("Newsletter");
+            $duplicate_check = $db_newsletter->check_duplicate_email($email_address);
+            if ($duplicate_check->count() === 0) {
+                $this->template->body->content->response = 'UNREGISTERED';
+            } else {
+                $opt_out_check = $db_newsletter->get_opt_out($email_address);
+                if (isset($opt_out_check->as_array()[0]['opt_out'])) {
+                    if ($opt_out_check->as_array()[0]['opt_out'] == 0) {
+                        if ($db_newsletter->set_opt_out($email_address, TRUE)) {
+                            $db_newsletter->add_subscription_note_by_email($email_address, $this->request->post('note'));
+                            $this->template->body->content->response = 'UNSUBSCRIBED';
+                        }
+                    } else {
+                        $this->template->body->content->response = 'REUNSUBSCRIBED';
+                    }
+                }
+            }
+        }
     }
 
     public function action_tickets()
