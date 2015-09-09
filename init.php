@@ -25,7 +25,7 @@ if (!Route::cache()) {
                 'action' => 'tickets'
     ));
 
-    Route::set('page-unsubscribe', 'unsubscribe')
+    Route::set('page-unsubscribe', 'unsubscribe/<email>/<domain>')
             ->defaults(array(
                 'controller' => 'pages',
                 'action' => 'unsubscribe'
