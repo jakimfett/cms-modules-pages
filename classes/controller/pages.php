@@ -196,7 +196,7 @@ class Controller_Pages extends Controller_Template
         }
 
         $email_address = filter_var($this->request->post('email'), FILTER_SANITIZE_EMAIL);
-        $name          = filter_var($this->request->post('name'), FILTER_SANITIZE_EMAIL);
+        $name          = filter_var($this->request->post('name'), FILTER_SANITIZE_STRING);
 
         if (!empty($email_address)) {
             $this->template->body->content->response = 'FAILURE';
