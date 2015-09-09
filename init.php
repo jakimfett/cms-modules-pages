@@ -19,6 +19,18 @@ if (!Route::cache()) {
                 'action' => 'tickets'
     ));
 
+    Route::set('page-subscribe', 'subscribe')
+            ->defaults(array(
+                'controller' => 'pages',
+                'action' => 'tickets'
+    ));
+
+    Route::set('page-unsubscribe', 'unsubscribe')
+            ->defaults(array(
+                'controller' => 'pages',
+                'action' => 'unsubscribe'
+    ));
+
     Route::set('page-four-oh-four', '404')
             ->defaults(array(
                 'controller' => 'pages',
