@@ -11,6 +11,12 @@
         <?php foreach ($scripts as $script) : ?>
             <script type="text/javascript" src="<?= $script; ?>"></script>
         <?php endforeach; ?>
+
+        <?php if (isset($meta_data)) : ?>
+            <?php foreach ($meta_data as $meta_name => $meta_content) : ?>
+                <meta name="<?= $meta_name; ?>" content="<?= $meta_content; ?>" />
+            <?php endforeach; ?>
+        <?php endif; ?>
         <script>
             $(document).ready(function () {
                 $(".media-embed").fitVids();

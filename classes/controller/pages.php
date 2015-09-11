@@ -44,6 +44,13 @@ class Controller_Pages extends Controller_Template
             'facebook' => 'https://www.facebook.com/solvethelabyrinth',
             'twitter' => 'https://twitter.com/labyrinthpdx'
         );
+
+        $meta_tag_id                       = 5;
+        $meta_list                         = ORM::factory('tag', $meta_tag_id)->posts->order_by('id', 'ASC')->find_all();
+        $this->template->header->meta_data = array();
+        foreach ($meta_list as $meta_single) {
+            $this->template->header->meta_data[$this->_sanitize_text($meta_single->title)] = $this->_sanitize_text($meta_single->body);
+        }
     }
 
     public function action_index()
@@ -129,7 +136,7 @@ class Controller_Pages extends Controller_Template
             'Â'
         );
 
-        return str_replace($needles, '', $text);
+        return trim(str_replace($needles, '', $text));
     }
 
     public function action_contact()
@@ -292,7 +299,8 @@ class Controller_Pages extends Controller_Template
         $this->template->body->tickets_page = true;
     }
 
-    public function action_redeem(){
+    public function action_redeem()
+    {
         header('Location: http://bookeo.com/labyrinth');
         exit;
     }
