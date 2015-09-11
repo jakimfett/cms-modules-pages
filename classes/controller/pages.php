@@ -292,6 +292,11 @@ class Controller_Pages extends Controller_Template
         $this->template->body->tickets_page = true;
     }
 
+    public function action_redeem(){
+        header('Location: http://bookeo.com/labyrinth');
+        exit;
+    }
+
     public function after()
     {
         if ($this->auto_render === TRUE) {

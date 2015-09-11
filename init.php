@@ -48,4 +48,10 @@ if (!Route::cache()) {
                 'controller' => 'pages',
                 'action' => 'rendertest'
     ));
+
+    Route::set('promo-redeem-redirect', 'redeem')
+            ->defaults(array(
+                'controller' => 'pages',
+                'action' => 'redeem'
+    ));
 }
