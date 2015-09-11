@@ -51,6 +51,13 @@ class Controller_Pages extends Controller_Template
         foreach ($meta_list as $meta_single) {
             $this->template->header->meta_data[$this->_sanitize_text($meta_single->title)] = $this->_sanitize_text($meta_single->body);
         }
+
+        $opengraph_tag_id                       = 6;
+        $opengraph_list                         = ORM::factory('tag', $opengraph_tag_id)->posts->order_by('id', 'ASC')->find_all();
+        $this->template->header->opengraph_data = array();
+        foreach ($opengraph_list as $opengraph_single) {
+            $this->template->header->opengraph_data[$this->_sanitize_text($opengraph_single->title)] = $this->_sanitize_text($opengraph_single->body);
+        }
     }
 
     public function action_index()

@@ -8,15 +8,15 @@
         <link rel="stylesheet" id="labyrinth-theme" href="/media/labyrinth/css/style.css" type="text/css" media="all">
         <link rel="stylesheet" href="/media/labyrinth/css/font-awesome.min.css">
 
-        <?php foreach ($scripts as $script) : ?>
-            <script type="text/javascript" src="<?= $script; ?>"></script>
+        <?php foreach ($scripts as $script) : ?><script type="text/javascript" src="<?= $script; ?>"></script>
         <?php endforeach; ?>
 
-        <?php if (isset($meta_data)) : ?>
-            <?php foreach ($meta_data as $meta_name => $meta_content) : ?>
-                <meta name="<?= $meta_name; ?>" content="<?= $meta_content; ?>" />
-            <?php endforeach; ?>
-        <?php endif; ?>
+        <?php foreach ($meta_data as $meta_name => $meta_content) : ?><meta name="<?= $meta_name; ?>" content="<?= $meta_content; ?>" />
+        <?php endforeach; ?>
+
+        <?php foreach ($opengraph_data as $og_property => $og_content) : ?><meta property="<?= $og_property; ?>" content="<?= $og_content; ?>" />
+        <?php endforeach; ?>
+
         <script>
             $(document).ready(function () {
                 $(".media-embed").fitVids();
