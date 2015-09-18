@@ -8,9 +8,6 @@
         <link rel='shortcut icon' href='/media/images/favicon.ico' type='image/x-icon'/> 
         <link rel="icon" href="/media/images/favicon.png" type="image/png" />
         
-        <link rel="stylesheet" id="labyrinth-theme" href="/media/labyrinth/css/style.css" type="text/css" media="all">
-        <link rel="stylesheet" href="/media/labyrinth/css/font-awesome.min.css">
-
         <?php foreach ($scripts as $script) : ?><script async type="text/javascript" src="<?= $script; ?>"></script>
         <?php endforeach; ?>
 
