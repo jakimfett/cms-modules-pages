@@ -2,12 +2,12 @@
 <html lang="en" prefix="og: http://ogp.me/ns#">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <meta charset="UTF-8">
 
-        <link rel='shortcut icon' href='/media/images/favicon.ico' type='image/x-icon'/> 
+        <link rel='shortcut icon' href='/media/images/favicon.ico' type='image/x-icon'/>
         <link rel="icon" href="/media/images/favicon.png" type="image/png" />
-        
+
         <?php foreach ($scripts as $script) : ?><script async type="text/javascript" src="<?= $script; ?>"></script>
         <?php endforeach; ?>
 
