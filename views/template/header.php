@@ -5,8 +5,8 @@
 
         <meta charset="UTF-8">
 
-        <link rel='shortcut icon' href='/media/images/favicon.ico' type='image/x-icon'/>
-        <link rel="icon" href="/media/images/favicon.png" type="image/png" />
+        <link rel='shortcut icon' href='/media/labyrinth/images/favicon.ico' type='image/x-icon'/>
+        <link rel="icon" href="/media/labyrinth/images/favicon.png" type="image/png" />
 
         <?php foreach ($scripts as $script) : ?><script async type="text/javascript" src="<?= $script; ?>"></script>
         <?php endforeach; ?>
