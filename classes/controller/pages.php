@@ -65,13 +65,15 @@ class Controller_Pages extends Controller_Template
 
         $this->template->body->content = View::factory('page/index');
 
-        $media_title_id                            = Path::lookup('pages/media-title-top')['id'];
-        $media_title_content                       = Post::dcache($media_title_id, 'page', Config::load('pages'));
-        $this->template->body->content->mediatitle = $this->_sanitize_text($media_title_content->body);
+        $pitch_id                                  = Path::lookup('pages/index-top-pitch')['id'];
+        $pitch_content                             = Post::dcache($pitch_id, 'page', Config::load('pages'));
+        $this->template->body->content->pitchtitle = $this->_sanitize_text($pitch_content->title);
+        $this->template->body->content->pitch      = $this->_sanitize_text($pitch_content->body);
 
-        $five_words_id                            = Path::lookup('pages/index-five-words')['id'];
-        $five_words_content                       = Post::dcache($five_words_id, 'page', Config::load('pages'));
-        $this->template->body->content->fivewords = $this->_sanitize_text($five_words_content->body);
+        $followup_id                                  = Path::lookup('pages/index-followup')['id'];
+        $followup_content                             = Post::dcache($followup_id, 'page', Config::load('pages'));
+        $this->template->body->content->followuptitle = $this->_sanitize_text($followup_content->title);
+        $this->template->body->content->followup      = $this->_sanitize_text($followup_content->body);
 
         $this->template->body->content->video = View::factory('block/video-embed');
 

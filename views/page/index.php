@@ -1,9 +1,13 @@
 <div id="tagline">
     <h1>
-        <?php if (isset($mediatitle)) : ?>
-            <?= trim($mediatitle); ?>
+        <?php if (isset($pitchtitle)) : ?>
+            <?= trim($pitchtitle); ?>
         <?php endif; ?>
     </h1>
+
+    <?php if (isset($pitch)) : ?>
+        <?= trim($pitch); ?>
+    <?php endif; ?>
 </div>
 <div id="video-pitch">
     <?php if (isset($video)) : ?>
@@ -13,10 +17,13 @@
 
 <div id="tagline">
     <h1>
-        <?php if (isset($fivewords)) : ?>
-            <?= trim($fivewords); ?>
+        <?php if (isset($followuptitle)) : ?>
+            <?= trim($followuptitle); ?>
         <?php endif; ?>
     </h1>
+    <?php if (isset($followup)) : ?>
+        <?= trim($followup); ?>
+    <?php endif; ?>
 </div>
 
 <div id="rooms">
