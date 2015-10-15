@@ -31,7 +31,7 @@
 
                 <?php if (!isset($tickets_page)): ?>
                     <div id="nav-tickets" class="center">
-                        <a href="/tickets" class="nav-button">Reserve Your Tickets Now</a>
+                        <a href="http://www.bookeo.com/labyrinth" class="nav-button">Purchase Tickets Now</a>
                     </div>
                 <?php endif; ?>
             </div>
@@ -39,7 +39,7 @@
                 <div id="purchase-float" class="floating-nav hidden">
                     <div>
                         <div class="center">
-                            <a href="/tickets" class="nav-button">Reserve Your Tickets Now</a>
+                            <a href="http://www.bookeo.com/labyrinth" class="nav-button">Purchase Tickets Now</a>
                         </div>
                     </div>
                 </div>
