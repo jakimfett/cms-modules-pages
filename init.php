@@ -22,7 +22,7 @@ if (!Route::cache()) {
     Route::set('page-subscribe', 'subscribe')
             ->defaults(array(
                 'controller' => 'pages',
-                'action' => 'tickets'
+                'action' => 'subscribe'
     ));
 
     Route::set('page-unsubscribe', 'unsubscribe/<email>/<domain>')

@@ -1,6 +1,6 @@
 <div id="beta-test-notice">
-    <img src="<?= $beta_test_image; ?>"/>
-    <?= $beta_test_notice; ?>
+    <img src="<?= $newsletter_subscribe_image; ?>"/>
+    <?= $newsletter_subscribe; ?>
 
     <div id="subscribe-form" class="padded">
         <?php if (isset($response)): ?>
@@ -23,5 +23,5 @@
     </div>
 
 
-    <?= $beta_press_notice; ?>
+    <?= $press_notice; ?>
 </div>

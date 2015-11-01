@@ -240,9 +240,9 @@ class Controller_Pages extends Controller_Template
         }
     }
 
-    public function action_tickets()
+    public function action_subscribe()
     {
-        $this->template->body->content = View::factory('page/tickets');
+        $this->template->body->content = View::factory('page/subscribe');
 
         if (!empty($this->re['HTTP_CLIENT_IP'])) {
             $ip_raw = $_SERVER['HTTP_CLIENT_IP'];
@@ -298,15 +298,15 @@ class Controller_Pages extends Controller_Template
 
 
 
-        $beta_test_notice_id                             = Path::lookup('pages/beta-test-notice')['id'];
-        $beta_test_notice_content                        = Post::dcache($beta_test_notice_id, 'page', Config::load('pages'));
-        $this->template->body->content->beta_test_image  = $beta_test_notice_content->image;
-        $this->template->body->content->beta_test_notice = $this->_sanitize_text($beta_test_notice_content->body);
+        $newsletter_subscribe_id                                   = Path::lookup('pages/newsletter-subscribe')['id'];
+        $newsletter_subscribe_content                              = Post::dcache($newsletter_subscribe_id, 'page', Config::load('pages'));
+        $this->template->body->content->newsletter_subscribe_image = $newsletter_subscribe_content->image;
+        $this->template->body->content->newsletter_subscribe       = $this->_sanitize_text($newsletter_subscribe_content->body);
 
 
-        $beta_press_notice_id                             = Path::lookup('pages/beta-press-notice')['id'];
-        $beta_press_notice_content                        = Post::dcache($beta_press_notice_id, 'page', Config::load('pages'));
-        $this->template->body->content->beta_press_notice = $this->_sanitize_text($beta_press_notice_content->body);
+        $press_notice_id                             = Path::lookup('pages/press-notice')['id'];
+        $press_notice_content                        = Post::dcache($press_notice_id, 'page', Config::load('pages'));
+        $this->template->body->content->press_notice = $this->_sanitize_text($press_notice_content->body);
 
 
         $this->template->body->tickets_page = true;
