@@ -156,6 +156,10 @@ class Controller_Pages extends Controller_Template
         $maintext_content                        = Post::dcache($maintext_id, 'page', Config::load('pages'));
         $this->template->body->content->maintext = $maintext_content->body;
 
+        $subscribe_id                             = Path::lookup('pages/subscribe')['id'];
+        $subscribe_content                        = Post::dcache($subscribe_id, 'page', Config::load('pages'));
+        $this->template->body->content->subscribe = $subscribe_content->body;
+
         $this->template->body->content->profiles = array();
 
         $count          = 0;
