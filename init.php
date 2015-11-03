@@ -7,6 +7,12 @@ if (!Route::cache()) {
                 'action' => 'faq'
     ));
 
+    Route::set('page-chapters', 'chapters(/<chapter_id>)')
+            ->defaults(array(
+                'controller' => 'pages',
+                'action' => 'chapters'
+    ));
+
     Route::set('page-contact', 'contact')
             ->defaults(array(
                 'controller' => 'pages',

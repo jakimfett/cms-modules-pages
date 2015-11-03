@@ -240,6 +240,50 @@ class Controller_Pages extends Controller_Template
         }
     }
 
+    public function action_chapters()
+    {
+        $this->template->body->content = View::factory('page/chapters');
+
+        $chapter_number = filter_var($this->request->param('chapter_id'), FILTER_SANITIZE_NUMBER_INT);
+
+        if (is_numeric($chapter_number)) {
+
+            $chapter_id      = Path::lookup("pages/chapter-{$chapter_number}")['id'];
+            $chapter_content = Post::dcache($chapter_id, 'page', Config::load('pages'));
+
+            $chapter = View::factory('block/chapter');
+
+            $chapter->title                         = $chapter_content->title;
+            $chapter->image                         = $chapter_content->image;
+            $chapter->text                          = $this->_sanitize_text($chapter_content->body);
+            $this->template->body->content->chapter = $chapter;
+
+            $this->template->body->content->chapter_image = $chapter_content->image;
+            $this->template->body->content->chapter_text  = $this->_sanitize_text($chapter_content->body);
+        } else {
+
+            $chapter_tag_id = 7;
+            $chapters       = ORM::factory('tag', $chapter_tag_id)->posts->order_by('id', 'ASC')->find_all();
+
+            $this->template->body->content->chapters = array();
+            foreach ($chapters as $chapter_data) {
+                $chapter = View::factory('block/chapter');
+
+                $chapter->title                            = $chapter_data->title;
+                $chapter->image                            = $chapter_data->image;
+                $chapter->text                             = $this->_sanitize_text($chapter_data->body);
+                $this->template->body->content->chapters[] = $chapter;
+            }
+        }
+
+
+
+
+        $maintext_id                             = Path::lookup('pages/chapters-maintext')['id'];
+        $maintext_content                        = Post::dcache($maintext_id, 'page', Config::load('pages'));
+        $this->template->body->content->maintext = $maintext_content->body;
+    }
+
     public function action_subscribe()
     {
         $this->template->body->content = View::factory('page/subscribe');
