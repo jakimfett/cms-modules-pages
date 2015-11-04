@@ -3,9 +3,17 @@
         <img src="/<?= $image; ?>"/>
     </div>
     <div class="text-container">
-        <h2><?= $title; ?></h2>
+        <?php if (isset($link)): ?>
+            <h2><a href="<?= $link ?>"><?= $title; ?></a></h2>
+        <?php else: ?>
+            <h2><?= $title; ?></h2>
+        <?php endif; ?>
         <p>
-            <?= $text; ?>
+            <?php if (isset($teaser)) : ?>
+                <?= $teaser; ?>
+            <?php elseif (isset($text)) : ?>
+                <?= $text; ?>
+            <?php endif; ?>
         </p>
     </div>
     <div class="clear"></div>

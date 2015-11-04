@@ -41,6 +41,7 @@ class Controller_Pages extends Controller_Template
             'home' => '/',
             'FAQ' => '/faq',
             'contact' => '/contact',
+            'chapters' => '/chapters',
             'facebook' => 'https://www.facebook.com/solvethelabyrinth',
             'twitter' => 'https://twitter.com/labyrinthpdx'
         );
@@ -267,16 +268,16 @@ class Controller_Pages extends Controller_Template
 
             $this->template->body->content->chapters = array();
             foreach ($chapters as $chapter_data) {
-                $chapter = View::factory('block/chapter');
-
+                $chapter_number_calculate                  = substr($chapter_data->title, 8);
+                $chapter                                   = View::factory('block/chapter');
                 $chapter->title                            = $chapter_data->title;
+                $chapter->link                             = "/chapters/{$chapter_number_calculate}";
                 $chapter->image                            = $chapter_data->image;
-                $chapter->text                             = $this->_sanitize_text($chapter_data->body);
+                $teaser                                    = trim(str_replace('</p>', '', explode('<p>', $this->_sanitize_text($chapter_data->body))[1]));
+                $chapter->teaser                           = $teaser;
                 $this->template->body->content->chapters[] = $chapter;
             }
         }
-
-
 
 
         $maintext_id                             = Path::lookup('pages/chapters-maintext')['id'];

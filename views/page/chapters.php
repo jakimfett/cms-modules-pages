@@ -3,6 +3,7 @@
     <div id="chapters-maintext">
         <h1><?= $maintext; ?></h1>
     </div>
+    <br/>
     <div id="chapters-profiles">
         <?php foreach ($chapters as $chapter) : ?>
             <?= $chapter; ?>
