@@ -1,12 +1,6 @@
 <?php
 if (!Route::cache()) {
 
-    Route::set('page-faq', 'faq')
-            ->defaults(array(
-                'controller' => 'pages',
-                'action' => 'faq'
-    ));
-
     Route::set('page-chapters', 'chapters(/<chapter_id>)')
             ->defaults(array(
                 'controller' => 'pages',
@@ -19,22 +13,10 @@ if (!Route::cache()) {
                 'action' => 'contact'
     ));
 
-    Route::set('page-tickets', 'tickets')
+    Route::set('page-faq', 'faq')
             ->defaults(array(
                 'controller' => 'pages',
-                'action' => 'tickets'
-    ));
-
-    Route::set('page-subscribe', 'subscribe')
-            ->defaults(array(
-                'controller' => 'pages',
-                'action' => 'subscribe'
-    ));
-
-    Route::set('page-unsubscribe', 'unsubscribe/<email>/<domain>')
-            ->defaults(array(
-                'controller' => 'pages',
-                'action' => 'unsubscribe'
+                'action' => 'faq'
     ));
 
     Route::set('page-four-oh-four', '404')
@@ -49,15 +31,33 @@ if (!Route::cache()) {
                 'action' => 'index'
     ));
 
+    Route::set('promo-redeem-redirect', 'redeem')
+            ->defaults(array(
+                'controller' => 'pages',
+                'action' => 'redeem'
+    ));
+
     Route::set('page-render-test', 'rendertest(/<alias>)(/<section>(/<view>))')
             ->defaults(array(
                 'controller' => 'pages',
                 'action' => 'rendertest'
     ));
 
-    Route::set('promo-redeem-redirect', 'redeem')
+    Route::set('page-subscribe', 'subscribe')
             ->defaults(array(
                 'controller' => 'pages',
-                'action' => 'redeem'
+                'action' => 'subscribe'
+    ));
+
+    Route::set('page-tickets', 'tickets')
+            ->defaults(array(
+                'controller' => 'pages',
+                'action' => 'tickets'
+    ));
+
+    Route::set('page-unsubscribe', 'unsubscribe/<email>/<domain>')
+            ->defaults(array(
+                'controller' => 'pages',
+                'action' => 'unsubscribe'
     ));
 }
