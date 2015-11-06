@@ -1,4 +1,4 @@
-<div id="beta-test-notice">
+<div id="subscribe-notice">
     <img src="<?= $newsletter_subscribe_image; ?>"/>
     <?= $newsletter_subscribe; ?>
 
