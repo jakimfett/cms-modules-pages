@@ -37,6 +37,9 @@
         <?= trim($rroom); ?>
     </div>
 </div>
+<div id="previous-chapters">
+    <a href="/chapters">Previous Chapters...</a>
+</div>
 <div id="blurbs">
     <div id="blurb-left">
         <div class="circle">
