@@ -256,6 +256,7 @@ class Controller_Pages extends Controller_Template
 
             $chapter->title                         = $chapter_content->title;
             $chapter->image                         = $chapter_content->image;
+            $chapter->image_align                   = 'center';
             $chapter->text                          = $this->_sanitize_text($chapter_content->body);
             $this->template->body->content->chapter = $chapter;
 
@@ -267,12 +268,21 @@ class Controller_Pages extends Controller_Template
             $chapters       = ORM::factory('tag', $chapter_tag_id)->posts->order_by('id', 'ASC')->find_all();
 
             $this->template->body->content->chapters = array();
+
+            $count = 0;
+
             foreach ($chapters as $chapter_data) {
-                $chapter_number_calculate                  = substr($chapter_data->title, 8);
-                $chapter                                   = View::factory('block/chapter');
-                $chapter->title                            = $chapter_data->title;
-                $chapter->link                             = "/chapters/{$chapter_number_calculate}";
-                $chapter->image                            = $chapter_data->image;
+                $chapter_number_calculate = substr($chapter_data->title, 8);
+                $chapter                  = View::factory('block/chapter');
+                $chapter->title           = $chapter_data->title;
+                $chapter->link            = "/chapters/{$chapter_number_calculate}";
+                $chapter->image           = $chapter_data->image;
+                if ($count % 2 == 0) {
+                    $chapter->image_align = 'right';
+                } else {
+                    $chapter->image_align = 'left';
+                }
+                $count++;
                 $teaser                                    = trim(str_replace('</p>', '', explode('<p>', $this->_sanitize_text($chapter_data->body))[1]));
                 $chapter->teaser                           = $teaser;
                 $this->template->body->content->chapters[] = $chapter;

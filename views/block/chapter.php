@@ -1,8 +1,6 @@
 <div class="chapter-container">
-    <div class="chapter-image">
-        <img src="/<?= $image; ?>"/>
-    </div>
     <div class="text-container">
+        <img class="chapter-image chapter-image-<?= $image_align; ?>" src="/<?= $image; ?>"/>
         <?php if (isset($link)): ?>
             <h2><a href="<?= $link ?>"><?= $title; ?></a></h2>
         <?php else: ?>
