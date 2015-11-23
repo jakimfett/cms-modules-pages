@@ -265,7 +265,7 @@ class Controller_Pages extends Controller_Template
         } else {
 
             $chapter_tag_id = 7;
-            $chapters       = ORM::factory('tag', $chapter_tag_id)->posts->order_by('id', 'ASC')->find_all();
+            $chapters       = ORM::factory('tag', $chapter_tag_id)->posts->order_by('id', 'DESC')->find_all();
 
             $this->template->body->content->chapters = array();
 
