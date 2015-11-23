@@ -283,7 +283,12 @@ class Controller_Pages extends Controller_Template
                     $chapter->image_align = 'left';
                 }
                 $count++;
-                $teaser                                    = trim(str_replace('</p>', '', explode('<p>', $this->_sanitize_text($chapter_data->body))[1]));
+
+                $chapter_paragraphs = explode('<p>', $this->_sanitize_text($chapter_data->body));
+                $teaser             = trim(str_replace('</p>', '', $chapter_paragraphs[1]));
+                $teaser .= '<br/><br/>';
+                $teaser .= trim(str_replace('</p>', '', $chapter_paragraphs[2]));
+
                 $chapter->teaser                           = $teaser;
                 $this->template->body->content->chapters[] = $chapter;
             }
