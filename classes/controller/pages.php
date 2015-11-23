@@ -292,6 +292,10 @@ class Controller_Pages extends Controller_Template
                 $chapter->teaser                           = $teaser;
                 $this->template->body->content->chapters[] = $chapter;
             }
+
+            $closing_id                             = Path::lookup('pages/blurb-closing')['id'];
+            $closing_content                        = Post::dcache($closing_id, 'page', Config::load('pages'));
+            $this->template->body->content->closing = $closing_content->body;
         }
 
 

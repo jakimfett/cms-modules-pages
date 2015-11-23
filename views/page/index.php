@@ -64,6 +64,5 @@
 </div>
 <div id="closing">
     <?= $closing; ?>
-
 </div>
 <div id="breakline"></div>
