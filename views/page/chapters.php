@@ -15,4 +15,9 @@
     </div>
 <?php elseif (isset($chapter)): ?>
     <?= $chapter; ?>
+
+    <div id="closing">
+        <?= $closing; ?>
+    </div>
+    <div id="breakline"></div>
 <?php endif; ?>

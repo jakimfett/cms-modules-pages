@@ -284,19 +284,28 @@ class Controller_Pages extends Controller_Template
                 $count++;
 
                 $chapter_paragraphs = explode('<p>', $this->_sanitize_text($chapter_data->body));
-                $teaser             = trim(str_replace('</p>', '', $chapter_paragraphs[1]));
-                $teaser .= '<br/><br/>';
-                $teaser .= trim(str_replace('</p>', '', $chapter_paragraphs[2]));
+                $start              = 2;
+                $end                = 3;
+                $teaser             = '';
+
+                foreach ($chapter_paragraphs as $key => $chapter_paragraph) {
+                    if ($key >= $start) {
+                        $teaser .= trim(str_replace('</p>', '', $chapter_paragraphs[$key]));
+                        $teaser .= '<br/><br/>';
+                        if ($key >= $end) {
+                            break;
+                        }
+                    }
+                }
 
                 $chapter->teaser                           = $teaser;
                 $this->template->body->content->chapters[] = $chapter;
             }
-
-            $closing_id                             = Path::lookup('pages/blurb-closing')['id'];
-            $closing_content                        = Post::dcache($closing_id, 'page', Config::load('pages'));
-            $this->template->body->content->closing = $closing_content->body;
         }
 
+        $closing_id                             = Path::lookup('pages/blurb-closing')['id'];
+        $closing_content                        = Post::dcache($closing_id, 'page', Config::load('pages'));
+        $this->template->body->content->closing = $closing_content->body;
 
         $maintext_id                             = Path::lookup('pages/chapters-maintext')['id'];
         $maintext_content                        = Post::dcache($maintext_id, 'page', Config::load('pages'));
