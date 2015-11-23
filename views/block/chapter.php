@@ -1,11 +1,8 @@
-<div class="chapter-container">
+<div class="single-chapter-container">
     <div class="text-container">
-        <img class="chapter-image chapter-image-<?= $image_align; ?>" src="/<?= $image; ?>"/>
-        <?php if (isset($link)): ?>
-            <h2><a href="<?= $link ?>"><?= $title; ?></a></h2>
-        <?php else: ?>
-            <h2><?= $title; ?></h2>
-        <?php endif; ?>
+        <h2><?= $title; ?></h2>
+        <img class="single-chapter-image" src="/<?= $image; ?>"/>
+
         <p>
             <?php if (isset($teaser)) : ?>
                 <?= $teaser; ?>

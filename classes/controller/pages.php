@@ -256,7 +256,6 @@ class Controller_Pages extends Controller_Template
 
             $chapter->title                         = $chapter_content->title;
             $chapter->image                         = $chapter_content->image;
-            $chapter->image_align                   = 'center';
             $chapter->text                          = $this->_sanitize_text($chapter_content->body);
             $this->template->body->content->chapter = $chapter;
 
@@ -273,7 +272,7 @@ class Controller_Pages extends Controller_Template
 
             foreach ($chapters as $chapter_data) {
                 $chapter_number_calculate = substr($chapter_data->title, 8);
-                $chapter                  = View::factory('block/chapter');
+                $chapter                  = View::factory('block/chapter-list');
                 $chapter->title           = $chapter_data->title;
                 $chapter->link            = "/chapters/{$chapter_number_calculate}";
                 $chapter->image           = $chapter_data->image;
