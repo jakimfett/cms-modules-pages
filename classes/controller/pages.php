@@ -475,21 +475,18 @@ class Controller_Pages extends Controller_Template
                 }
                 $count++;
 
-                $game_paragraphs = explode('<p>', $this->_sanitize_text($game_data->body));
-                $start           = 2;
-                $end             = 3;
-                $teaser          = '';
+                $game_paragraphs   = explode('<p>', $this->_sanitize_text($game_data->body));
+                $teaser_max_length = 500;
+                $teaser            = '';
 
                 foreach ($game_paragraphs as $key => $game_paragraph) {
-                    if ($key >= $start) {
-                        $teaser .= trim(str_replace('</p>', '', $game_paragraphs[$key]));
+                    $game_paragraph_trimmed = trim(str_replace('</p>', '', $game_paragraph));
+
+                    if (!empty($game_paragraph_trimmed) && strlen($teaser) + strlen($game_paragraph_trimmed) < $teaser_max_length) {
+                        $teaser .= $game_paragraph_trimmed;
                         $teaser .= '<br/><br/>';
-                        if ($key >= $end) {
-                            break;
-                        }
                     }
                 }
-
                 $game->teaser                   = $teaser;
                 $content->content[$game_number] = $game;
             }
