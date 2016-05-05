@@ -1,7 +1,7 @@
-<div class="single-chapter-container">
-    <div class="single-chapter-text-container">
+<div>
+    <div class="wrap">
         <div id="chapter-title">
-            <h2><?= $title; ?></h2>
+            <h1><?= $title; ?></h1>
         </div>
         <img class="single-chapter-image" src="/<?= $image; ?>"/>
 
@@ -9,5 +9,4 @@
             <?= $text; ?>
         </p>
     </div>
-    <div class="clear"></div>
 </div>

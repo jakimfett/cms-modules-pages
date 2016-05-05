@@ -1,12 +1,5 @@
-<div class="picture-container picture-<?= $side; ?>">
-    <div class="profile-picture">
-        <img src="<?= $image; ?>"/>
-    </div>
-    <div class="text-container">
-        <h2><?= $title; ?></h2>
-        <p>
-            <?= $text; ?>
-        </p>
-    </div>
-    <div class="clear"></div>
-</div>
+<div><div class="wrap">
+	<img class="face" src="<?= $image; ?>">
+	<h1><?= $name; ?></h1><h2><?= $title; ?></h2>
+	<p><?= $text; ?></p>
+</div></div>

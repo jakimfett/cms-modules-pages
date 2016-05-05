@@ -1,6 +1,6 @@
-<div class="chapter-container">
+<div class="chapter-container chapter-align-<?= $image_align; ?>">
     <div class="text-container">
-        <img class="chapter-image chapter-image-<?= $image_align; ?>" src="/<?= $image; ?>"/>
+		<img class="chapter-image" src="/<?= $image; ?>"/>
         <?php if (isset($link)): ?>
             <h2><a href="<?= $link ?>"><?= $title; ?></a></h2>
         <?php else: ?>
@@ -14,5 +14,4 @@
             <?php endif; ?>
         </p>
     </div>
-    <div class="clear"></div>
 </div>
