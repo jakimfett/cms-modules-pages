@@ -1,6 +1,12 @@
 <?php
 if (!Route::cache()) {
 
+    Route::set('page-chapter-redirect', 'chapters(/<chapter_id>)')
+            ->filter(function() {
+                header('Location: /games');
+                exit;
+            });
+
     Route::set('page-games', 'games(/<game_id>)')
             ->defaults(array(
                 'controller' => 'pages',
