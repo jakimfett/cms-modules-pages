@@ -443,12 +443,30 @@ class Controller_Pages extends Controller_Template
 
             $count = 0;
 
+            // @TODO - add a chapter ID field to the CMS admin
+            // This is not a good way to do this
+            $game_ids = array(
+                1 => 'Inheritance',
+                2 => 'Crucifixus',
+                3 => 'Blitzkreig',
+                4 => 'Cosmos'
+            );
+
             foreach ($games as $game_data) {
-                $game_number_calculate = substr($game_data->title, 8);
+
+                foreach ($game_ids as $game_id => $game_name) {
+                    if (strpos(strtolower($game_data->title), strtolower($game_name)) !== false) {
+                        $game_number = $game_id;
+                        break;
+                    }
+                }
+                if (empty($game_number)) {
+                    continue;
+                }
 
                 $game        = View::factory('block/game-list');
                 $game->title = $game_data->title;
-                $game->link  = "/games/{$game_number_calculate}";
+                $game->link  = "/games/{$game_number}";
                 $game->image = $game_data->image;
                 if ($count % 2 == 0) {
                     $game->image_align = 'right';
