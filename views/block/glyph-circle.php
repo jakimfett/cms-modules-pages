@@ -1,4 +1,4 @@
 <div class="circle">
-	<i class="fa fa-<?= $type; ?>"></i>
+    <i class="fa fa-<?= $type; ?>"></i>
 </div>
 <?= $subtext; ?>

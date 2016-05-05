@@ -7,7 +7,7 @@
 
         <link rel='shortcut icon' href='/media/labyrinth/images/favicon.ico' type='image/x-icon'/>
         <link rel="icon" href="/media/labyrinth/images/favicon.png" type="image/png" />
-		<meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
 
         <?php foreach ($scripts as $script) : ?><script type="text/javascript" src="<?= $script; ?>"></script>
         <?php endforeach; ?>
@@ -37,8 +37,8 @@
         </script>
 
         <title><?= $title ?></title>
-		
-		<link rel="stylesheet" href="/media/labyrinth/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="/media/labyrinth/css/font-awesome.min.css">
         <link rel="stylesheet" id="labyrinth-theme" href="/media/labyrinth/css/labyrinth.css" type="text/css" media="all">
 
 

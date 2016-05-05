@@ -1,4 +1,4 @@
 <div class="wrap">
-	<img src="<?= $image; ?>">
-	<?= $body; ?>
+    <img src="<?= $image; ?>">
+    <?= $body; ?>
 </div>

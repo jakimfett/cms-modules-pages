@@ -1,5 +1,5 @@
 <body>
-	<?= $navigation; ?>
-	<?= $content; ?>
-	<?= $impressum; ?>
+    <?= $navigation; ?>
+    <?= $content; ?>
+    <?= $impressum; ?>
 </body>

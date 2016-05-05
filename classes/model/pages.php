@@ -2,5 +2,5 @@
 
 class Model_Pages extends Model
 {
-    
+
 }
