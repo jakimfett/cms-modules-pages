@@ -490,9 +490,11 @@ class Controller_Pages extends Controller_Template
                     }
                 }
 
-                $game->teaser       = $teaser;
-                $content->content[] = $game;
+                $game->teaser                   = $teaser;
+                $content->content[$game_number] = $game;
             }
+
+            ksort($content->content);
         }
 
         $closing_id                             = Path::lookup('pages/blurb-closing')['id'];
