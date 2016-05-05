@@ -1,10 +1,10 @@
 <?php
 if (!Route::cache()) {
 
-    Route::set('page-chapters', 'chapters(/<chapter_id>)')
+    Route::set('page-games', 'games(/<game_id>)')
             ->defaults(array(
                 'controller' => 'pages',
-                'action' => 'chapters'
+                'action' => 'games'
     ));
 
     Route::set('page-contact', 'contact')

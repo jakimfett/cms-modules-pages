@@ -27,7 +27,6 @@ class Controller_Pages extends Controller_Template
             '/media/labyrinth/js/viewport.js',
             '/media/labyrinth/js/skrollr.js',
             '/media/labyrinth/js/labyrinth-main.js'
-			
         );
 
         $this->template->header->title = $this->title;
@@ -35,23 +34,23 @@ class Controller_Pages extends Controller_Template
 
         $page                 = $this->request->param('template', 'page');
         $this->template->body = View::factory('template/' . $page);
-		
-		$this->template->body->navigation        			= View::factory('template/navigation');
-		$this->template->body->navigation->fixed 			= false;
-		$this->template->body->navigation->group 			= Request::current()->action();
-		
-		
-		$this->template->body->impressum         			= View::factory('template/impressum');
-		$address_id                             			= Path::lookup('pages/contact-address')['id'];
-        $address_content                        			= Post::dcache($address_id, 'page', Config::load('pages'));
-		$this->template->body->impressum->contact_address	= $address_content->body;
-        $footer_blurb_id                      				= Path::lookup('pages/footer-blurb')['id'];
-        $footer_blurb_content                 				= Post::dcache($footer_blurb_id, 'page', Config::load('pages'));
-		$this->template->body->impressum->footer_blurb		= $this->_sanitize_text($footer_blurb_content->body);
-		$copyright_id	                      				= Path::lookup('pages/copyright')['id'];
-        $copyright_content	                 				= Post::dcache($copyright_id, 'page', Config::load('pages'));
-		$this->template->body->impressum->copyright			= $this->_sanitize_text($copyright_content->body);
-		
+
+        $this->template->body->navigation        = View::factory('template/navigation');
+        $this->template->body->navigation->fixed = false;
+        $this->template->body->navigation->group = Request::current()->action();
+
+
+        $this->template->body->impressum                  = View::factory('template/impressum');
+        $address_id                                       = Path::lookup('pages/contact-address')['id'];
+        $address_content                                  = Post::dcache($address_id, 'page', Config::load('pages'));
+        $this->template->body->impressum->contact_address = $address_content->body;
+        $footer_blurb_id                                  = Path::lookup('pages/footer-blurb')['id'];
+        $footer_blurb_content                             = Post::dcache($footer_blurb_id, 'page', Config::load('pages'));
+        $this->template->body->impressum->footer_blurb    = $this->_sanitize_text($footer_blurb_content->body);
+        $copyright_id                                     = Path::lookup('pages/copyright')['id'];
+        $copyright_content                                = Post::dcache($copyright_id, 'page', Config::load('pages'));
+        $this->template->body->impressum->copyright       = $this->_sanitize_text($copyright_content->body);
+
         $meta_tag_id                       = 5;
         $meta_list                         = ORM::factory('tag', $meta_tag_id)->posts->order_by('id', 'ASC')->find_all();
         $this->template->header->meta_data = array();
@@ -70,194 +69,194 @@ class Controller_Pages extends Controller_Template
     public function action_index()
     {
 
-        $this->template->body->content = View::factory('page/index');
-		$this->template->body->navigation->fixed = "#about";
-		
-		$cover 									= View::factory('block/box');
-		$this->template->body->content->cover 	= $cover;
-		$cover->id 								= 'intro';
-		$cover->classes 						= 'intro macro-fullwidth';
-		$cover->container_tween 				= 'data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -500px;" data-anchor-target="#intro"';
-		$cover->content_tween 					= 'data-150-top="opacity: 1" data-0-top="opacity: 0" data-anchor-target="#intro img"';
-		$cover->content 						= View::factory('staticblock/index-cover');
-		
-		$pitch_id 								= Path::lookup('pages/index-top-pitch')['id'];
-        $pitch_content 							= Post::dcache($pitch_id, 'page', Config::load('pages'));
-		
-		$pitch 									= View::factory('block/box');
-		$this->template->body->content->pitch 	= $pitch;
-		$pitch->id 								= 'about';
-		$pitch->classes 						= 'about bigtex macro-fullwidth';
-		$pitch->container_tween 				= 'data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;" data-anchor-target="#about"';
-		$pitch->content_tween					= 'data-anchor-target="#about .cols"';
-		$pitch->content 						= View::factory('block/cols');
-		$pitch->content->mode 					= 'er';
-		$pitch->content->left 					= View::factory('block/video-embed');
-		$pitch->content->right					= View::factory('block/text-region');
-		$pitch->content->right->heading 		= $this->_sanitize_text($pitch_content->title);
-		$pitch->content->right->heading_level 	= 1;
-		$pitch->content->right->content 		= $this->_sanitize_text($pitch_content->body);
-		
-        $followup_id 							= Path::lookup('pages/index-followup')['id'];
-        $followup_content 						= Post::dcache($followup_id, 'page', Config::load('pages'));
-		
-		
-		$chapters 									= View::factory('block/box');
-		$this->template->body->content->post_pitch 	= $chapters;
-		$chapters->id 								= 'chapters';
-		$chapters->classes 							= 'chapters macro-fullwidth';
-		$chapters->content_classes 					= 'bigtex backfill';
-		$chapters->container_tween 					= 'data-bottom-top="background-position: 50% 0px;" data-top-bottom="background-position: 50% -150px;" data-anchor-target="#chapters"';
-		$chapters->content_tween 					= '';
-		$chapters->content 							= array();
-		
-		$preamble 					= View::factory('block/text-region');
-		$chapters->content[] 		= $preamble;
-		$preamble->heading 			= $this->_sanitize_text($followup_content->title);
-		$preamble->heading_level 	= 1;
-		$preamble->content 			= $this->_sanitize_text($followup_content->body);
-		
-		$left_room_id 			= Path::lookup('pages/index-left-room')['id'];
-        $left_room_content 		= Post::dcache($left_room_id, 'page', Config::load('pages'));
-		
-		$middle_room_id 			= Path::lookup('pages/index-center-room')['id'];
-        $middle_room_content 		= Post::dcache($middle_room_id, 'page', Config::load('pages'));
-		
-        $right_room_id 			= Path::lookup('pages/index-right-room')['id'];
-        $right_room_content 	= Post::dcache($right_room_id, 'page', Config::load('pages'));
-		
-		$rooms 					= View::factory('block/grid');
-		$chapters->content[] 	= $rooms;
-		$rooms->mode 			= 'gamma';
-		$rooms->one 			= View::factory('block/room');
-		$rooms->one->image		= $left_room_content->image;
-		$rooms->one->body 		= $left_room_content->body;
-		
-		$rooms->two 			= View::factory('block/room');
-		$rooms->two->image 		= $middle_room_content->image;
-		$rooms->two->body 		= $middle_room_content->body;
-		
-		$rooms->three 			= View::factory('block/room');
-		$rooms->three->image 	= $right_room_content->image;
-		$rooms->three->body 	= $right_room_content->body;
-		
-		
-		$parables 								= View::factory('block/box');
-		$this->template->body->content->blurb 	= $parables;
-		$parables->id 							= 'parables';
-		$parables->classes 						= 'parables macro-fullwidth';
-		$parables->content_classes				= 'wrap backfill bigtex pop';
-		$parables->container_tween 				= 'data-bottom-top="opacity: 0; top: 400px" data-100-top="opacity: 1; top: 0px;" data-top-bottom="top: -400px;" data-anchor-target="#parables"';
-		$parables->content_tween 				= 'data-anchor-target="#about .cols"';
-		$parables->content 						= array();
-		
-		
-		$left_blurb_id 			= Path::lookup('pages/blurb-left')['id'];
-        $left_blurb_content 	= Post::dcache($left_blurb_id, 'page', Config::load('pages'));
-		$center_blurb_id 		= Path::lookup('pages/blurb-center')['id'];
-        $center_blurb_content 	= Post::dcache($center_blurb_id, 'page', Config::load('pages'));
-		$right_blurb_id 		= Path::lookup('pages/blurb-right')['id'];
-        $right_blurb_content 	= Post::dcache($right_blurb_id, 'page', Config::load('pages'));
-		
-		$circles 					= View::factory('block/grid');
-		$parables->content[] 		= $circles;
-		$circles->mode 				= 'gamma';
-		$circles->id 				= 'blurbs';
-		$circles->one 				= View::factory('block/glyph-circle');
-		$circles->one->type 		= 'cogs';
-		$circles->one->subtext 		= $left_blurb_content->body;
-		$circles->two 				= View::factory('block/glyph-circle');
-		$circles->two->type 		= 'leanpub';
-		$circles->two->subtext 		= $center_blurb_content->body;
-		$circles->three 			= View::factory('block/glyph-circle');
-		$circles->three->type 		= 'key';
-		$circles->three->subtext 	= $right_blurb_content->body;
-        
-		$closing_id 			= Path::lookup('pages/blurb-closing')['id'];
-        $closing_content 		= Post::dcache($closing_id, 'page', Config::load('pages'));
-		$closer 				= View::factory('block/text-region');
-		$parables->content[] 	= $closer;
-		$closer->heading 		= $closing_content->body;
-		$closer->heading_level 	= 1;
-		$closer->content 		= '';       
+        $this->template->body->content           = View::factory('page/index');
+        $this->template->body->navigation->fixed = "#about";
+
+        $cover                                = View::factory('block/box');
+        $this->template->body->content->cover = $cover;
+        $cover->id                            = 'intro';
+        $cover->classes                       = 'intro macro-fullwidth';
+        $cover->container_tween               = 'data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -500px;" data-anchor-target="#intro"';
+        $cover->content_tween                 = 'data-150-top="opacity: 1" data-0-top="opacity: 0" data-anchor-target="#intro img"';
+        $cover->content                       = View::factory('staticblock/index-cover');
+
+        $pitch_id      = Path::lookup('pages/index-top-pitch')['id'];
+        $pitch_content = Post::dcache($pitch_id, 'page', Config::load('pages'));
+
+        $pitch                                = View::factory('block/box');
+        $this->template->body->content->pitch = $pitch;
+        $pitch->id                            = 'about';
+        $pitch->classes                       = 'about bigtex macro-fullwidth';
+        $pitch->container_tween               = 'data-center="background-position: 50% 0px;" data-top-bottom="background-position: 50% -100px;" data-anchor-target="#about"';
+        $pitch->content_tween                 = 'data-anchor-target="#about .cols"';
+        $pitch->content                       = View::factory('block/cols');
+        $pitch->content->mode                 = 'er';
+        $pitch->content->left                 = View::factory('block/video-embed');
+        $pitch->content->right                = View::factory('block/text-region');
+        $pitch->content->right->heading       = $this->_sanitize_text($pitch_content->title);
+        $pitch->content->right->heading_level = 1;
+        $pitch->content->right->content       = $this->_sanitize_text($pitch_content->body);
+
+        $followup_id      = Path::lookup('pages/index-followup')['id'];
+        $followup_content = Post::dcache($followup_id, 'page', Config::load('pages'));
+
+
+        $games                                     = View::factory('block/box');
+        $this->template->body->content->post_pitch = $games;
+        $games->id                                 = 'games';
+        $games->classes                            = 'games macro-fullwidth';
+        $games->content_classes                    = 'bigtex backfill';
+        $games->container_tween                    = 'data-bottom-top="background-position: 50% 0px;" data-top-bottom="background-position: 50% -150px;" data-anchor-target="#games"';
+        $games->content_tween                      = '';
+        $games->content                            = array();
+
+        $preamble                = View::factory('block/text-region');
+        $games->content[]        = $preamble;
+        $preamble->heading       = $this->_sanitize_text($followup_content->title);
+        $preamble->heading_level = 1;
+        $preamble->content       = $this->_sanitize_text($followup_content->body);
+
+        $left_room_id      = Path::lookup('pages/index-left-room')['id'];
+        $left_room_content = Post::dcache($left_room_id, 'page', Config::load('pages'));
+
+        $middle_room_id      = Path::lookup('pages/index-center-room')['id'];
+        $middle_room_content = Post::dcache($middle_room_id, 'page', Config::load('pages'));
+
+        $right_room_id      = Path::lookup('pages/index-right-room')['id'];
+        $right_room_content = Post::dcache($right_room_id, 'page', Config::load('pages'));
+
+        $rooms             = View::factory('block/grid');
+        $games->content[]  = $rooms;
+        $rooms->mode       = 'gamma';
+        $rooms->one        = View::factory('block/room');
+        $rooms->one->image = $left_room_content->image;
+        $rooms->one->body  = $left_room_content->body;
+
+        $rooms->two        = View::factory('block/room');
+        $rooms->two->image = $middle_room_content->image;
+        $rooms->two->body  = $middle_room_content->body;
+
+        $rooms->three        = View::factory('block/room');
+        $rooms->three->image = $right_room_content->image;
+        $rooms->three->body  = $right_room_content->body;
+
+
+        $parables                             = View::factory('block/box');
+        $this->template->body->content->blurb = $parables;
+        $parables->id                         = 'parables';
+        $parables->classes                    = 'parables macro-fullwidth';
+        $parables->content_classes            = 'wrap backfill bigtex pop';
+        $parables->container_tween            = 'data-bottom-top="opacity: 0; top: 400px" data-100-top="opacity: 1; top: 0px;" data-top-bottom="top: -400px;" data-anchor-target="#parables"';
+        $parables->content_tween              = 'data-anchor-target="#about .cols"';
+        $parables->content                    = array();
+
+
+        $left_blurb_id        = Path::lookup('pages/blurb-left')['id'];
+        $left_blurb_content   = Post::dcache($left_blurb_id, 'page', Config::load('pages'));
+        $center_blurb_id      = Path::lookup('pages/blurb-center')['id'];
+        $center_blurb_content = Post::dcache($center_blurb_id, 'page', Config::load('pages'));
+        $right_blurb_id       = Path::lookup('pages/blurb-right')['id'];
+        $right_blurb_content  = Post::dcache($right_blurb_id, 'page', Config::load('pages'));
+
+        $circles                 = View::factory('block/grid');
+        $parables->content[]     = $circles;
+        $circles->mode           = 'gamma';
+        $circles->id             = 'blurbs';
+        $circles->one            = View::factory('block/glyph-circle');
+        $circles->one->type      = 'cogs';
+        $circles->one->subtext   = $left_blurb_content->body;
+        $circles->two            = View::factory('block/glyph-circle');
+        $circles->two->type      = 'leanpub';
+        $circles->two->subtext   = $center_blurb_content->body;
+        $circles->three          = View::factory('block/glyph-circle');
+        $circles->three->type    = 'key';
+        $circles->three->subtext = $right_blurb_content->body;
+
+        $closing_id            = Path::lookup('pages/blurb-closing')['id'];
+        $closing_content       = Post::dcache($closing_id, 'page', Config::load('pages'));
+        $closer                = View::factory('block/text-region');
+        $parables->content[]   = $closer;
+        $closer->heading       = $closing_content->body;
+        $closer->heading_level = 1;
+        $closer->content       = '';
     }
-	
-	private function page_band($uid, $title, $text)
-	{
-		$brief 									= View::factory('block/box');
-		$brief->id 								= $uid;
-		$brief->classes 						= 'about bigtex macro-halfwidth';
-		$brief->content_classes					= '';
-		$brief->container_tween 				= 'data-0-top="background-position: 50% 100%;" data-top-bottom="background-position: 50% 0%;" data-anchor-target="#' . $uid . '"';
-		$brief->content_tween 					= 'data-anchor-target="#' . $uid . ' .cols"';
-		$brief->content 						= View::factory('block/cols');
-		$brief->content->mode					= 'sr';
-		$brief->content->left					= '';
-		$brief->content->right					= View::factory('block/text-region');
-		$brief->content->right_classes			= 'backfill';
-		$brief->content->right->heading			= $title;
-		$brief->content->right->heading_level 	= 1;
-		$brief->content->right->content 		= $text;
-		return $brief;
-	}
-	
-	private function tabulate($elements, $cols) 
-	{
-		$count 		= count($elements);
-		$rows 		= array();
-		$odd_items 	= ($count % $cols);
-		$odd_rows 	= $odd_items != 0;
-		
-		if ($odd_rows) {
-			$old_elements 	= $elements;
-			$elements 		= array();
-			$pad 			= $cols - $odd_items;
-			for ($i = 0; $i < $count + $pad; $i++) {
-				if ($i >= $count)
-					$elements[$i] = "";
-				else
-					$elements[$i] = $old_elements[$i];
-			}
-		}
-		
-		for ($i = 0; $i < $count; $i += $cols) {
-			$row 			= View::factory('block/grid');
-			if ($cols == 2) {
-				$row->mode 		= 'beta';
-				$row->one 		= $elements[$i];
-				$row->two 		= $elements[$i + 1];
-			} else {
-				$row->mode 		= 'gamma';
-				$row->one 		= $elements[$i];
-				$row->two 		= $elements[$i + 1];
-				$row->three		= $elements[$i + 2];
-			}
-			$rows[] 		= $row;
-		}
-		
-		return $rows;
-	}
+
+    private function page_band($uid, $title, $text)
+    {
+        $brief                                = View::factory('block/box');
+        $brief->id                            = $uid;
+        $brief->classes                       = 'about bigtex macro-halfwidth';
+        $brief->content_classes               = '';
+        $brief->container_tween               = 'data-0-top="background-position: 50% 100%;" data-top-bottom="background-position: 50% 0%;" data-anchor-target="#' . $uid . '"';
+        $brief->content_tween                 = 'data-anchor-target="#' . $uid . ' .cols"';
+        $brief->content                       = View::factory('block/cols');
+        $brief->content->mode                 = 'sr';
+        $brief->content->left                 = '';
+        $brief->content->right                = View::factory('block/text-region');
+        $brief->content->right_classes        = 'backfill';
+        $brief->content->right->heading       = $title;
+        $brief->content->right->heading_level = 1;
+        $brief->content->right->content       = $text;
+        return $brief;
+    }
+
+    private function tabulate($elements, $cols)
+    {
+        $count     = count($elements);
+        $rows      = array();
+        $odd_items = ($count % $cols);
+        $odd_rows  = $odd_items != 0;
+
+        if ($odd_rows) {
+            $old_elements = $elements;
+            $elements     = array();
+            $pad          = $cols - $odd_items;
+            for ($i = 0; $i < $count + $pad; $i++) {
+                if ($i >= $count)
+                    $elements[$i] = "";
+                else
+                    $elements[$i] = $old_elements[$i];
+            }
+        }
+
+        for ($i = 0; $i < $count; $i += $cols) {
+            $row = View::factory('block/grid');
+            if ($cols == 2) {
+                $row->mode = 'beta';
+                $row->one  = $elements[$i];
+                $row->two  = $elements[$i + 1];
+            } else {
+                $row->mode  = 'gamma';
+                $row->one   = $elements[$i];
+                $row->two   = $elements[$i + 1];
+                $row->three = $elements[$i + 2];
+            }
+            $rows[] = $row;
+        }
+
+        return $rows;
+    }
 
     public function action_faq()
     {
-        $this->template->body->content = View::factory('page/faq');
-		$this->template->body->content->banner = $this->page_band("header-faqs", "Frequently Asked Questions", "Answers to all your questions!");
-		
-        $maintext_id                             = Path::lookup('pages/faq-maintext')['id'];
-        $maintext_content                        = Post::dcache($maintext_id, 'page', Config::load('pages'));
-		
-		$content = View::factory('block/box');
-		$this->template->body->content->content = $content;
-		$content->id 							= 'content';
-		$content->classes 						= 'wrap bigtex backfill';
-		$content->content_classes				= '';
-		$content->container_tween 				= '';
-		$content->content_tween 				= '';
-		$content->content 						= array();
-		
-		$preamble = View::factory('block/text-region');
-		$content->content[] = $preamble;
-		$preamble->content = $maintext_content->body;
+        $this->template->body->content         = View::factory('page/faq');
+        $this->template->body->content->banner = $this->page_band("header-faqs", "Frequently Asked Questions", "Answers to all your questions!");
+
+        $maintext_id      = Path::lookup('pages/faq-maintext')['id'];
+        $maintext_content = Post::dcache($maintext_id, 'page', Config::load('pages'));
+
+        $content                                = View::factory('block/box');
+        $this->template->body->content->content = $content;
+        $content->id                            = 'content';
+        $content->classes                       = 'wrap bigtex backfill';
+        $content->content_classes               = '';
+        $content->container_tween               = '';
+        $content->content_tween                 = '';
+        $content->content                       = array();
+
+        $preamble           = View::factory('block/text-region');
+        $content->content[] = $preamble;
+        $preamble->content  = $maintext_content->body;
 
         $count      = 0;
         $faq_tag_id = 3;
@@ -269,11 +268,11 @@ class Controller_Pages extends Controller_Template
             } else {
                 $side = 'right';
             }
-            $faq->title                            = $faq_data->title;
-            $faq->icon                             = 'fa-question-circle';
-            $faq->text                             = $this->_sanitize_text($faq_data->body);
-            $faq->side                             = $side;
-            $content->content[] 				   = $faq;
+            $faq->title         = $faq_data->title;
+            $faq->icon          = 'fa-question-circle';
+            $faq->text          = $this->_sanitize_text($faq_data->body);
+            $faq->side          = $side;
+            $content->content[] = $faq;
             $count++;
         }
     }
@@ -295,31 +294,31 @@ class Controller_Pages extends Controller_Template
 
     public function action_contact()
     {
-        $this->template->body->content = View::factory('page/contact');
-		$this->template->body->content->banner = $this->page_band("header-who", "About Us", "Meet the minds behind Labyrinth.");
+        $this->template->body->content         = View::factory('page/contact');
+        $this->template->body->content->banner = $this->page_band("header-who", "About Us", "Meet the minds behind Labyrinth.");
 
-        $maintext_id                             = Path::lookup('pages/contact-maintext')['id'];
-        $maintext_content                        = Post::dcache($maintext_id, 'page', Config::load('pages'));
-		
-		$subscribe_id                             = Path::lookup('pages/subscribe')['id'];
-        $subscribe_content                        = Post::dcache($subscribe_id, 'page', Config::load('pages'));
-		
-		$content = View::factory('block/box');
-		$this->template->body->content->content = $content;
-		$content->id 							= 'content';
-		$content->classes 						= 'wrap backfill';
-		$content->content_classes				= '';
-		$content->container_tween 				= '';
-		$content->content_tween 				= '';
-		$content->content 						= array();
-		
-		$preamble = View::factory('block/text-region');
-		$content->content[] = $preamble;
-		$preamble->classed = true;
-		$preamble->classes = 'bigtex';
-		$preamble->heading = $maintext_content->body;
-		$preamble->heading_level = 1;
-		$preamble->content = $subscribe_content->body;
+        $maintext_id      = Path::lookup('pages/contact-maintext')['id'];
+        $maintext_content = Post::dcache($maintext_id, 'page', Config::load('pages'));
+
+        $subscribe_id      = Path::lookup('pages/subscribe')['id'];
+        $subscribe_content = Post::dcache($subscribe_id, 'page', Config::load('pages'));
+
+        $content                                = View::factory('block/box');
+        $this->template->body->content->content = $content;
+        $content->id                            = 'content';
+        $content->classes                       = 'wrap backfill';
+        $content->content_classes               = '';
+        $content->container_tween               = '';
+        $content->content_tween                 = '';
+        $content->content                       = array();
+
+        $preamble                = View::factory('block/text-region');
+        $content->content[]      = $preamble;
+        $preamble->classed       = true;
+        $preamble->classes       = 'bigtex';
+        $preamble->heading       = $maintext_content->body;
+        $preamble->heading_level = 1;
+        $preamble->content       = $subscribe_content->body;
 
         $profile_list = array();
 
@@ -328,27 +327,27 @@ class Controller_Pages extends Controller_Template
         $profiles       = ORM::factory('tag', $contact_tag_id)->posts->order_by('title', 'ASC')->find_all();
 
         foreach ($profiles as $profile) {
-            $profile_block				= View::factory('block/profile');
-			$description				= $profile->title;
-			$anchor						= strrpos($description, " - ");
-			
-			if ($anchor !== false) {
-				$profile_block->name 		= substr($description, 0, $anchor);
-				$profile_block->title		= substr($description, $anchor + 3);
-			} else {
-				$profile_block->name 		= $description;
-				$profile_block->title		= "";
-			}
-			
-            $profile_block->image		= $profile->image;
-            $profile_block->text		= $this->_sanitize_text($profile->body);
-            $profile_list[]				= $profile_block;
+            $profile_block = View::factory('block/profile');
+            $description   = $profile->title;
+            $anchor        = strrpos($description, " - ");
+
+            if ($anchor !== false) {
+                $profile_block->name  = substr($description, 0, $anchor);
+                $profile_block->title = substr($description, $anchor + 3);
+            } else {
+                $profile_block->name  = $description;
+                $profile_block->title = "";
+            }
+
+            $profile_block->image = $profile->image;
+            $profile_block->text  = $this->_sanitize_text($profile->body);
+            $profile_list[]       = $profile_block;
             $count++;
         }
-		
-		$rows = $this->tabulate($profile_list, 3);
-		foreach ($rows as $row) 
-			$content->content[] = $row;
+
+        $rows               = $this->tabulate($profile_list, 3);
+        foreach ($rows as $row)
+            $content->content[] = $row;
 
         $address_id                             = Path::lookup('pages/contact-address')['id'];
         $address_content                        = Post::dcache($address_id, 'page', Config::load('pages'));
@@ -408,65 +407,64 @@ class Controller_Pages extends Controller_Template
         }
     }
 
-    public function action_chapters()
+    public function action_games()
     {
-        $this->template->body->content = View::factory('page/chapters');
-		$this->template->body->content->banner = $this->page_band("header-chapters", "Chapters", "Immerse yourself in the narrative world of Labyrinth.");
+        $this->template->body->content         = View::factory('page/games');
+        $this->template->body->content->banner = $this->page_band("header-games", "games", "Immerse yourself in the narrative world of Labyrinth.");
 
-		$content = View::factory('block/box');
-		$this->template->body->content->content = $content;
-		$content->id 							= 'content';
-		$content->classes 						= 'wrap backfill';
-		$content->content_classes				= '';
-		$content->container_tween 				= '';
-		$content->content_tween 				= '';
-		$content->content 						= array();
-		
-        $chapter_number = filter_var($this->request->param('chapter_id'), FILTER_SANITIZE_NUMBER_INT);
+        $content                                = View::factory('block/box');
+        $this->template->body->content->content = $content;
+        $content->id                            = 'content';
+        $content->classes                       = 'wrap backfill';
+        $content->content_classes               = '';
+        $content->container_tween               = '';
+        $content->content_tween                 = '';
+        $content->content                       = array();
 
-        if (is_numeric($chapter_number)) {
+        $game_number = filter_var($this->request->param('game_id'), FILTER_SANITIZE_NUMBER_INT);
 
-            $chapter_id      = Path::lookup("pages/chapter-{$chapter_number}")['id'];
-            $chapter_content = Post::dcache($chapter_id, 'page', Config::load('pages'));
+        if (is_numeric($game_number)) {
 
-            $chapter = View::factory('block/chapter');
+            $game_id      = Path::lookup("pages/game-{$game_number}")['id'];
+            $game_content = Post::dcache($game_id, 'page', Config::load('pages'));
 
-            $chapter->title                         = $chapter_content->title;
-            $chapter->image                         = $chapter_content->image;
-            $chapter->text                          = $this->_sanitize_text($chapter_content->body);
-            $content->content 						= $chapter;
+            $game = View::factory('block/game');
 
+            $game->title      = $game_content->title;
+            $game->image      = $game_content->image;
+            $game->text       = $this->_sanitize_text($game_content->body);
+            $content->content = $game;
         } else {
 
-            $chapter_tag_id = 7;
-            $chapters       = ORM::factory('tag', $chapter_tag_id)->posts->order_by('id', 'DESC')->find_all();
+            $game_tag_id = 7;
+            $games       = ORM::factory('tag', $game_tag_id)->posts->order_by('id', 'DESC')->find_all();
 
-            $this->template->body->content->chapters = array();
+            $this->template->body->content->games = array();
 
             $count = 0;
 
-            foreach ($chapters as $chapter_data) {
-                $chapter_number_calculate = substr($chapter_data->title, 8);
-				
-                $chapter                  = View::factory('block/chapter-list');
-                $chapter->title           = $chapter_data->title;
-                $chapter->link            = "/chapters/{$chapter_number_calculate}";
-                $chapter->image           = $chapter_data->image;
+            foreach ($games as $game_data) {
+                $game_number_calculate = substr($game_data->title, 8);
+
+                $game        = View::factory('block/game-list');
+                $game->title = $game_data->title;
+                $game->link  = "/games/{$game_number_calculate}";
+                $game->image = $game_data->image;
                 if ($count % 2 == 0) {
-                    $chapter->image_align = 'right';
+                    $game->image_align = 'right';
                 } else {
-                    $chapter->image_align = 'left';
+                    $game->image_align = 'left';
                 }
                 $count++;
 
-                $chapter_paragraphs = explode('<p>', $this->_sanitize_text($chapter_data->body));
-                $start              = 2;
-                $end                = 3;
-                $teaser             = '';
+                $game_paragraphs = explode('<p>', $this->_sanitize_text($game_data->body));
+                $start           = 2;
+                $end             = 3;
+                $teaser          = '';
 
-                foreach ($chapter_paragraphs as $key => $chapter_paragraph) {
+                foreach ($game_paragraphs as $key => $game_paragraph) {
                     if ($key >= $start) {
-                        $teaser .= trim(str_replace('</p>', '', $chapter_paragraphs[$key]));
+                        $teaser .= trim(str_replace('</p>', '', $game_paragraphs[$key]));
                         $teaser .= '<br/><br/>';
                         if ($key >= $end) {
                             break;
@@ -474,8 +472,8 @@ class Controller_Pages extends Controller_Template
                     }
                 }
 
-                $chapter->teaser	= $teaser;
-                $content->content[] = $chapter;
+                $game->teaser       = $teaser;
+                $content->content[] = $game;
             }
         }
 
@@ -483,7 +481,7 @@ class Controller_Pages extends Controller_Template
         $closing_content                        = Post::dcache($closing_id, 'page', Config::load('pages'));
         $this->template->body->content->closing = $closing_content->body;
 
-        $maintext_id                             = Path::lookup('pages/chapters-maintext')['id'];
+        $maintext_id                             = Path::lookup('pages/games-maintext')['id'];
         $maintext_content                        = Post::dcache($maintext_id, 'page', Config::load('pages'));
         $this->template->body->content->maintext = $maintext_content->body;
     }
